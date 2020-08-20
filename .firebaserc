@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "vetproyect-29443": {
+      "hosting": {
+        "veterinaryApp": [
+          "vetproyect-29443"
+        ]
+      }
+    }
+  }
+}

@@ -26,6 +26,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SliderComponent } from './home/slider/slider.component';
+import { ContentComponent } from './home/content/content.component';
 
 
 
@@ -36,7 +37,8 @@ registerLocaleData(es);
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    SliderComponent
+    SliderComponent,
+    ContentComponent
     
   ],
   imports: [

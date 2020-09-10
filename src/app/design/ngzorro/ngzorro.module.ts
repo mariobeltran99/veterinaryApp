@@ -5,12 +5,19 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
 const NgZorroMaterialComponents = [
   NzPageHeaderModule,
   NzMenuModule,
   NzIconModule,
   NzLayoutModule,
-  NzCarouselModule
+  NzCarouselModule,
+  NzGridModule,
+  NzDividerModule,
+  NzCardModule
 ]
 
 

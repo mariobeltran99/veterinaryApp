@@ -1,0 +1,57 @@
+<form nz-form [formGroup]="contactForm" class="login-form">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="Nombre"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="mail">
+        <input
+          type="email"
+          nz-input
+          formControlName="email"
+          placeholder="Correo Electrónico"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="pushpin">
+        <input
+          type="text"
+          nz-input
+          formControlName="affair"
+          placeholder="Asunto"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="message">
+        <textarea
+          nz-input
+          formControlName="message"
+          placeholder="Escriba su mensaje"
+        ></textarea>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    [nzType]="'primary'"
+    [disabled]="!contactForm.valid"
+  >
+    Enviar
+  </button>
+</form>

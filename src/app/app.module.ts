@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //---others modules imports
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 //---components imports
@@ -27,6 +28,11 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { ContentComponent } from './home/content/content.component';
+import { Departament1Component } from './home/content/departament1/departament1.component';
+import { Departament2Component } from './home/content/departament2/departament2.component';
+import { Departament3Component } from './home/content/departament3/departament3.component';
+import { Departament4Component } from './home/content/departament4/departament4.component';
+import { ContactformComponent } from './home/content/contactform/contactform.component';
 
 
 
@@ -38,7 +44,12 @@ registerLocaleData(es);
     HomeComponent,
     NavbarComponent,
     SliderComponent,
-    ContentComponent
+    ContentComponent,
+    Departament1Component,
+    Departament2Component,
+    Departament3Component,
+    Departament4Component,
+    ContactformComponent
     
   ],
   imports: [
@@ -49,7 +60,8 @@ registerLocaleData(es);
     HttpClientModule,
     NgzorroModule,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

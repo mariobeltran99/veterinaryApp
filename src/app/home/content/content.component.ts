@@ -12,13 +12,18 @@ import { faKaaba } from '@fortawesome/free-solid-svg-icons';
 import { faSyringe } from '@fortawesome/free-solid-svg-icons';
 import { faCat } from '@fortawesome/free-solid-svg-icons';
 import { faDove } from '@fortawesome/free-solid-svg-icons';
-
+import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAllergies } from '@fortawesome/free-solid-svg-icons';
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit {
   faShield = faShieldAlt;
@@ -29,14 +34,50 @@ export class ContentComponent implements OnInit {
   faVials = faVials;
   faXray = faXRay;
   faLaptopM = faLaptopMedical;
-  fadog = faDog;
-  faka = faKaaba;
+  faDog = faDog;
+  faKa = faKaaba;
   faSyin = faSyringe;
-  facat = faCat;
-  fadove = faDove;
-  constructor() { }
+  faCat = faCat;
+  faDove = faDove;
+  faHospital = faHospitalAlt;
+  faAllergie = faAllergies;
+  faHeart = faHeartbeat;
+  faPhone = faPhoneAlt;
+  faEmail = faEnvelope;
+  faLocate = faMapMarkedAlt;
+  view1:boolean;
+  view2:boolean;
+  view3:boolean;
+  view4:boolean;
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.view1 = true;
+    this.view2 = false;
+    this.view3 = false;
+    this.view4 = false;
   }
-
+  changeViewDepartament(num:number){
+    if(num == 1){
+      this.view1 = true;
+      this.view2 = false;
+      this.view3 = false;
+      this.view4 = false;
+    } else if(num == 2){
+      this.view1 = false;
+      this.view2 = true;
+      this.view3 = false;
+      this.view4 = false;
+    }else if(num == 3){
+      this.view1 = false;
+      this.view2 = false;
+      this.view3 = true;
+      this.view4 = false;
+    }else if(num == 4){
+      this.view1 = false;
+      this.view2 = false;
+      this.view3 = false;
+      this.view4 = true;
+    }
+  }
 }

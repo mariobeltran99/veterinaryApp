@@ -8,6 +8,10 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 const NgZorroMaterialComponents = [
   NzPageHeaderModule,
@@ -17,7 +21,10 @@ const NgZorroMaterialComponents = [
   NzCarouselModule,
   NzGridModule,
   NzDividerModule,
-  NzCardModule
+  NzCardModule,
+  NzFormModule,
+  NzInputModule,
+  NzButtonModule
 ]
 
 

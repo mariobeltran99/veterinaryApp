@@ -19,7 +19,6 @@ import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -45,35 +44,35 @@ export class ContentComponent implements OnInit {
   faPhone = faPhoneAlt;
   faEmail = faEnvelope;
   faLocate = faMapMarkedAlt;
-  view1:boolean;
-  view2:boolean;
-  view3:boolean;
-  view4:boolean;
+  view1: boolean;
+  view2: boolean;
+  view3: boolean;
+  view4: boolean;
   constructor() {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.view1 = true;
     this.view2 = false;
     this.view3 = false;
     this.view4 = false;
   }
-  changeViewDepartament(num:number){
-    if(num == 1){
+  changeViewDepartament(num: number) {
+    if (num == 1) {
       this.view1 = true;
       this.view2 = false;
       this.view3 = false;
       this.view4 = false;
-    } else if(num == 2){
+    } else if (num == 2) {
       this.view1 = false;
       this.view2 = true;
       this.view3 = false;
       this.view4 = false;
-    }else if(num == 3){
+    } else if (num == 3) {
       this.view1 = false;
       this.view2 = false;
       this.view3 = true;
       this.view4 = false;
-    }else if(num == 4){
+    } else if (num == 4) {
       this.view1 = false;
       this.view2 = false;
       this.view3 = false;

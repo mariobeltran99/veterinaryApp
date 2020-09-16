@@ -33,6 +33,7 @@ import { Departament2Component } from './home/content/departament2/departament2.
 import { Departament3Component } from './home/content/departament3/departament3.component';
 import { Departament4Component } from './home/content/departament4/departament4.component';
 import { ContactformComponent } from './home/content/contactform/contactform.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 
 
@@ -49,7 +50,8 @@ registerLocaleData(es);
     Departament2Component,
     Departament3Component,
     Departament4Component,
-    ContactformComponent
+    ContactformComponent,
+    FooterComponent
     
   ],
   imports: [

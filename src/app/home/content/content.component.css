@@ -135,3 +135,32 @@ ul{
     font-size: 1.5em;
     font-weight: bold;
 }
+.formcentral{
+    padding: 50px;
+}
+.low{
+    background-color:  #43658b
+}
+.titleFo{
+    padding-top: 20px;
+    color: white;
+    font-size: 1.5em;
+}
+.intd{
+    color: white;
+    font-size: 1em;
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    margin-right: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+li{
+    margin-top: 10px;
+}
+.tnd{
+    padding-left: 90px;
+    padding-bottom: 30px;
+}

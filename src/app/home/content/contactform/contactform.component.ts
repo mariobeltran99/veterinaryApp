@@ -12,7 +12,10 @@ import {
   faPaperPlane,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-
+import { Contact } from 'src/app/home/interfaces/contact';
+import { DocumentReference } from '@angular/fire/firestore';
+import { ContactService } from 'src/app/home/services/contact.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-contactform',
   templateUrl: './contactform.component.html',
@@ -25,7 +28,11 @@ export class ContactformComponent implements OnInit {
   faComment = faComment;
   faPaperP = faPaperPlane;
   contactForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private contactServices: ContactService,
+    private notification: NzNotificationService
+  ) {}
 
   ngOnInit() {
     this.contactForm = this.fb.group({
@@ -41,7 +48,7 @@ export class ContactformComponent implements OnInit {
         Validators.pattern(
           /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
         ),
-        Validators.maxLength(100)
+        Validators.maxLength(100),
       ]),
       affair: new FormControl(null, [
         Validators.required,
@@ -50,7 +57,7 @@ export class ContactformComponent implements OnInit {
       ]),
       message: new FormControl(null, [
         Validators.required,
-        Validators.minLength(10)
+        Validators.minLength(10),
       ]),
     });
   }
@@ -81,7 +88,8 @@ export class ContactformComponent implements OnInit {
         break;
       case 'email':
         if (forms.hasError('pattern')) {
-          message = 'El correo ingresado es inválido, debe cumplir este formato: juan@gmail.com';
+          message =
+            'El correo ingresado es inválido, debe cumplir este formato: juan@gmail.com';
         } else if (forms.hasError('maxlength')) {
           message = 'Debe contener como máximo cien caracteres';
         }
@@ -102,9 +110,44 @@ export class ContactformComponent implements OnInit {
     return message;
   }
   //send contact
-  send(){
-    if(this.contactForm.valid){
-      
+  sendContact() {
+    if (this.contactForm.valid) {
+      let reg = new RegExp('^\\s');
+      if (
+        reg.test(this.contactForm.get('affair').value) == true &&
+        reg.test(this.contactForm.get('message').value) == true
+      ) {
+        this.createNotification(
+          'warning',
+          'Advertencia al Enviar',
+          'Hay campos vacíos rellenados con espacios o tabulaciones'
+        );
+      } else {
+        let contact: Contact = this.contactForm.value;
+        contact.createdDate = new Date();
+        this.contactServices.saveContact(contact);
+        this.resetForm();
+        this.createNotification(
+          'success',
+          'Enviado Exitosamente',
+          'Le brindaremos su respuesta a su correo electrónico dado'
+        );
+      }
+    } else {
+      this.createNotification(
+        'error',
+        'Enviado Fallido',
+        'Hubo problema en la conexión'
+      );
     }
+  }
+  createNotification(type: string, title: string, content: string) {
+    this.notification.create(type, title, content);
+  }
+  resetForm() {
+    this.contactForm.reset();
+    Object.keys(this.contactForm.controls).forEach(key => {
+      this.contactForm.controls[key].setErrors(null);
+    });
   }
 }

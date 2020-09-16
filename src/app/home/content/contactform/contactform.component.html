@@ -1,4 +1,4 @@
-<form [formGroup]="contactForm" (onSubmit)="send()">
+<form [formGroup]="contactForm" (ngSubmit)="sendContact()">
   <mat-form-field appearance="outline" class="imp">
     <mat-label>Nombre y Apellido</mat-label>
     <input

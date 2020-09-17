@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { faShieldAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
-import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
-import { faWifi } from '@fortawesome/free-solid-svg-icons';
-import { faStethoscope } from '@fortawesome/free-solid-svg-icons';
-import { faVials } from '@fortawesome/free-solid-svg-icons';
-import { faXRay } from '@fortawesome/free-solid-svg-icons';
-import { faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
-import { faKaaba } from '@fortawesome/free-solid-svg-icons';
-import { faSyringe } from '@fortawesome/free-solid-svg-icons';
-import { faCat } from '@fortawesome/free-solid-svg-icons';
-import { faDove } from '@fortawesome/free-solid-svg-icons';
-import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
-import { faAllergies } from '@fortawesome/free-solid-svg-icons';
-import { faHeartbeat } from '@fortawesome/free-solid-svg-icons';
-import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import {
+  faShieldAlt,
+  faUniversalAccess,
+  faGlobeAmericas,
+  faWifi,
+  faStethoscope,
+  faVials,
+  faXRay,
+  faLaptopMedical,
+  faDog,
+  faKaaba,
+  faSyringe,
+  faCat,
+  faDove,
+  faHospitalAlt,
+  faAllergies,
+  faHeartbeat,
+  faPhoneAlt,
+  faMapMarkedAlt,
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-content',

@@ -1,0 +1,26 @@
+<mat-toolbar>
+   <span><fa-icon [icon]="faPaw" class="iconlog"></fa-icon> Veterinaria</span>
+</mat-toolbar>
+<ng-container *ngIf="user$ | async as user; else elseTemplate">
+    <div class="content">
+        <mat-card class="cards">     
+            <h1 class="title">¡Gracias por Registrarte!</h1>
+            <br>
+            <p>Te enviaremos un correo a <strong>{{ user?.email }}</strong></p>
+            <br>
+            <p>Por favor, revisa tu correo y dale click al enlace de verificación</p>
+            <br>
+            <button mat-raised-button (click)="onSendEmail()">Reenviar Correo de Verificación</button>
+            <br>
+            <p>Si has dado click al enlace para verificar tu correo, verfica si ya estás en el sistema</p>
+            <br>
+            <button mat-raised-button (click)="onVerify()">Verificar la confirmación de tu correo electrónico</button>
+
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseTemplate>
+    Cargando...
+</ng-template>
+
+

@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //--firebase imports
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
@@ -39,6 +40,16 @@ import { Departament3Component } from './home/content/departament3/departament3.
 import { Departament4Component } from './home/content/departament4/departament4.component';
 import { ContactformComponent } from './home/content/contactform/contactform.component';
 import { FooterComponent } from './home/footer/footer.component';
+import { ViewloginComponent } from './modules/auth/login/components/viewlogin/viewlogin.component';
+import { NavbarLoginComponent } from './modules/auth/login/components/viewlogin/navbar-login/navbar-login.component';
+import { TabsLoginComponent } from './modules/auth/login/components/viewlogin/tabs-login/tabs-login.component';
+import { ViewclientComponent } from './modules/client/components/viewclient/viewclient.component';
+import { NavbarClientComponent } from './modules/client/components/viewclient/navbar-client/navbar-client.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
+import { ModalSignoutComponent } from './modules/client/components/viewclient/modal-signout/modal-signout.component';
+import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
+
 
 
 
@@ -56,7 +67,15 @@ registerLocaleData(es);
     Departament3Component,
     Departament4Component,
     ContactformComponent,
-    FooterComponent
+    FooterComponent,
+    ViewloginComponent,
+    NavbarLoginComponent,
+    TabsLoginComponent,
+    ViewclientComponent,
+    NavbarClientComponent,
+    VerifyComponent,
+    ModalSignoutComponent,
+    ForgotComponent
     
   ],
   imports: [
@@ -70,7 +89,9 @@ registerLocaleData(es);
     FontAwesomeModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    LayoutModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

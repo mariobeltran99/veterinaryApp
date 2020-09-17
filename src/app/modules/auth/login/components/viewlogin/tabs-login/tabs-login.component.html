@@ -1,0 +1,121 @@
+<mat-tab-group>
+  <mat-tab label="Iniciar Sesión">
+    <h1 class="title">Iniciar Sesión</h1>
+    <br />
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Correo Electrónico</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ej: juan@gmail.com"
+          formControlName="email"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faEnvelope" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid1('email')" class="error">{{
+          getErrorMessage1("email")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide1 ? 'password' : 'text'"
+          autocomplete="off"
+          formControlName="password"
+          maxlength="16"
+          #pass
+        />
+        <button mat-icon-button matSuffix (click)="hide1 = !hide1">
+          <ng-container *ngIf="hide1 == true; else elseTemplate">
+            <fa-icon [icon]="faVisibilityOff"></fa-icon>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <fa-icon [icon]="faVisibility"></fa-icon>
+          </ng-template>
+        </button>
+        <mat-hint align="end">{{ pass.value.length || 0 }}/16</mat-hint>
+        <mat-error *ngIf="isFieldValid1('password')">{{
+          getErrorMessage1("password")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Ingresar
+      </button>
+    </form>
+    <br>
+    <br>
+    <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/forgot-password']" 
+      >
+        Recuperar contraseña
+      </button>
+  </mat-tab>
+  <mat-tab label="Registrarse">
+    <h1 class="title">Registrarse</h1>
+    <br />
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Correo Electrónico</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ej: juan@gmail.com"
+          formControlName="email"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faEnvelope" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid2('email')" class="error">{{
+          getErrorMessage2("email")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide2 ? 'password' : 'text'"
+          autocomplete="off"
+          formControlName="password"
+          maxlength="16"
+          #passreg
+        />
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2">
+          <ng-container *ngIf="hide2 == true; else elseTemplate">
+            <fa-icon [icon]="faVisibilityOff"></fa-icon>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <fa-icon [icon]="faVisibility"></fa-icon>
+          </ng-template>
+        </button>
+        <mat-hint align="end">{{ passreg.value.length || 0 }}/16</mat-hint>
+        <mat-error *ngIf="isFieldValid2('password')">{{
+          getErrorMessage2("password")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!registerForm.valid"
+      >
+        Registrar
+      </button>
+    </form>
+  </mat-tab>
+</mat-tab-group>

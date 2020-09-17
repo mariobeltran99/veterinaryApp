@@ -1,0 +1,26 @@
+.content{
+    display: block;
+    margin: auto;
+    padding: 100px;
+}
+.title{
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+span{
+    font-size: 1.5em;
+}
+.cards{
+    background-color: teal;
+    color: white;
+}
+p{
+    text-align: center;
+    font-size: 1.5em;
+}
+.mat-raised-button{
+    display: block;
+    margin: auto;
+}

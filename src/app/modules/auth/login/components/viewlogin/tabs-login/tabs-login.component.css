@@ -1,0 +1,21 @@
+.title{
+    margin-top: 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+.imp{
+    font-size: 1em;
+    width: 100%;
+}
+fa-icon{
+    font-size: 1.5em;
+}
+.error{
+    font-size: 1em;
+}
+.mat-raised-button{
+    width: 100%;
+    background-color: teal;
+    color: white;
+}

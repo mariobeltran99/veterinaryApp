@@ -23,7 +23,19 @@ export class VerifyComponent implements OnInit {
   ngOnInit(): void {}
 
   onSendEmail() {
-    this.authServices.sendVerificationEmail();
+    this.authServices.sendVerificationEmail().then((res) =>{
+      this.notification.create(
+        'info',
+        'El correo electrónico se ha enviado de nuevo',
+        'Por favor, revise su bandeja de entrada'
+      );
+    }).catch(ex => {
+      this.notification.create(
+        'info',
+        'El correo electrónico no llego a su destinatario',
+        'Por favor, inténtelo de nuevo'
+      );
+    });
   }
   onVerify() {
     this.authServices.getCurrentUser().then((res) => {
@@ -34,9 +46,13 @@ export class VerifyComponent implements OnInit {
         this.notification.create(
           'info',
           'El correo electrónico no está verficado',
-          'Por favor, confime el correo electrónico para ingresar a su cuenta'
+          'Por favor, confirme el correo electrónico para ingresar a su cuenta'
         );
       }
     });
+  }
+  onLogout(){
+    this.authServices.logout();
+    this.router.navigate(['/login']);
   }
 }

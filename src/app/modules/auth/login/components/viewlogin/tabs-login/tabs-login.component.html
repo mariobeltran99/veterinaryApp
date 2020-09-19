@@ -27,7 +27,6 @@
           autocomplete="off"
           formControlName="password"
           maxlength="16"
-          #pass
         />
         <button mat-icon-button matSuffix (click)="hide1 = !hide1">
           <ng-container *ngIf="hide1 == true; else elseTemplate">
@@ -37,7 +36,6 @@
             <fa-icon [icon]="faVisibility"></fa-icon>
           </ng-template>
         </button>
-        <mat-hint align="end">{{ pass.value.length || 0 }}/16</mat-hint>
         <mat-error *ngIf="isFieldValid1('password')">{{
           getErrorMessage1("password")
         }}</mat-error>
@@ -67,6 +65,71 @@
     <h1 class="title">Registrarse</h1>
     <br />
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Nombre</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ej: Juan"
+          formControlName="name"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faUser" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid2('name')" class="error">{{
+          getErrorMessage2("name")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Apellido</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ej: Gómez"
+          formControlName="lastname"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faUser" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid2('lastname')" class="error">{{
+          getErrorMessage2("lastname")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>DUI</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ej: 74551595-5"
+          formControlName="dui"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faDui" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid2('dui')" class="error">{{
+          getErrorMessage2("dui")
+        }}</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Edad</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Ej: 34"
+          formControlName="age"
+          step="1"
+          autocomplete="off"
+        />
+        <fa-icon [icon]="faAge" matSuffix></fa-icon>
+        <mat-error *ngIf="isFieldValid2('age')" class="error">{{
+          getErrorMessage2("age")
+        }}</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
       <mat-form-field appearance="outline" class="imp">
         <mat-label>Correo Electrónico</mat-label>
         <input
@@ -108,6 +171,31 @@
       </mat-form-field>
       <br />
       <br />
+      <mat-form-field appearance="outline" class="imp">
+        <mat-label>Confirmar Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide3 ? 'password' : 'text'"
+          autocomplete="off"
+          formControlName="passwordConfirm"
+          maxlength="16"
+          #passregConfirm
+        />
+        <button mat-icon-button matSuffix (click)="hide3 = !hide3">
+          <ng-container *ngIf="hide3 == true; else elseTemplate">
+            <fa-icon [icon]="faVisibilityOff"></fa-icon>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <fa-icon [icon]="faVisibility"></fa-icon>
+          </ng-template>
+        </button>
+        <mat-hint align="end">{{ passregConfirm.value.length || 0 }}/16</mat-hint>
+        <mat-error *ngIf="isFieldValid2('passwordConfirm')">{{
+          getErrorMessage2("passwordConfirm")
+        }}</mat-error>
+      </mat-form-field>
+      <br />
+      <br />
       <button
         mat-raised-button
         color="primary"
@@ -116,6 +204,8 @@
       >
         Registrar
       </button>
+      <br>
+      <br>
     </form>
   </mat-tab>
 </mat-tab-group>

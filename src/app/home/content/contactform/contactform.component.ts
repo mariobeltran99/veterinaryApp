@@ -112,7 +112,7 @@ export class ContactformComponent implements OnInit {
   //send contact
   sendContact() {
     if (this.contactForm.valid) {
-      let reg = new RegExp('^\\s');
+      const reg = new RegExp('^\\s');
       if (
         reg.test(this.contactForm.get('affair').value) == true &&
         reg.test(this.contactForm.get('message').value) == true

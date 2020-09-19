@@ -49,6 +49,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
 import { ModalSignoutComponent } from './modules/client/components/viewclient/modal-signout/modal-signout.component';
 import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
+import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
+import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
+import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
+import { CanClientGuard } from './modules/auth/guards/can-client.guard';
 
 
 
@@ -75,7 +79,10 @@ registerLocaleData(es);
     NavbarClientComponent,
     VerifyComponent,
     ModalSignoutComponent,
-    ForgotComponent
+    ForgotComponent,
+    ViewadminComponent,
+    ViewveterinarianComponent,
+    ViewgrocerComponent
     
   ],
   imports: [
@@ -93,7 +100,7 @@ registerLocaleData(es);
     AngularFireAuthModule,
     LayoutModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }],
+  providers: [{ provide: NZ_I18N, useValue: es_ES }, CanClientGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

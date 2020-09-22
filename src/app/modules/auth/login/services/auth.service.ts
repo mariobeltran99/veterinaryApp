@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { first, switchMap } from 'rxjs/operators';
+import { first, map, switchMap } from 'rxjs/operators';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import { Observable, of, Subject } from 'rxjs';
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Users } from '../../interfaces/user';
 import { RoleValidator } from '../../helpers/roleValidator';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends RoleValidator{
+export class AuthService extends RoleValidator {
   public user$: Observable<User>;
   constructor(
     public afAuth: AngularFireAuth,
@@ -66,7 +66,9 @@ export class AuthService extends RoleValidator{
   }
   //create User with Login in Firestore
   createUserData(user: User, users: Users) {
-    const userRef:AngularFirestoreDocument<Users> = this.afirestore.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<Users> = this.afirestore.doc(
+      `users/${user.uid}`
+    );
     const data: Users = {
       uid: user.uid,
       email: user.email,
@@ -74,16 +76,48 @@ export class AuthService extends RoleValidator{
       lastname: users.lastname,
       dui: users.dui,
       age: users.age,
-      displayName: users.name + " " +  users.lastname,
+      displayName: users.name + ' ' + users.lastname,
       photoURL: null,
       createDate: new Date(),
-      role: 'Administrador',
+      role: 'Cliente',
       disabled: false,
     };
-    return userRef.set(data,{merge:true});
+    return userRef.set(data, { merge: true });
   }
-  //Exists DUI or NOT
-  existsDUI(dui:string){
-    
+  //Exists DUI or NOT -- query
+  getExistsDUI(dui: string): Observable<firebase.firestore.QuerySnapshot> {
+    return this.afirestore
+      .collection<Users>('users', (ref) => ref.where('dui', '==', dui))
+      .get();
   }
+  public usersElements:Array<Users> = [];
+  //pass the data in the array
+  loadElementsExistsDUI(duis: string){ 
+    this.getExistsDUI(duis).subscribe((respond) => {
+      respond.docs.forEach((value) => {
+        const data = value.data();
+        const id = value.id;
+        const users: Users = {
+          uid: id,
+          email: data.email,
+          name: data.name,
+          lastname: data.lastname,
+          dui: data.dui,
+          age: data.age,
+          displayName: data.displayName,
+          photoURL: data.photoURL,
+          createDate: data.createDate.toDate(),
+          role: data.role,
+          disabled: data.disabled,
+        };
+        this.usersElements.push(users);
+      });
+    });
+  }
+  getRole(uid: string): Observable<firebase.firestore.QuerySnapshot> {
+    return this.afirestore
+      .collection<Users>('users', (ref) => ref.where('uid', '==', uid))
+      .get();
+  }
+
 }

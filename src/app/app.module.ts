@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //--firebase imports
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
@@ -53,9 +53,13 @@ import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadm
 import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
 import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
 import { CanClientGuard } from './modules/auth/guards/can-client.guard';
-
-
-
+import { NavbarAdminComponent } from './modules/admin/components/navbar-admin/navbar-admin.component';
+import { NavbarGrocerComponent } from './modules/grocer/components/navbar-grocer/navbar-grocer.component';
+import { NavbarVeterinarianComponent } from './modules/veterinarian/components/navbar-veterinarian/navbar-veterinarian.component';
+import { CanAdminGuard } from './modules/auth/guards/can-admin.guard';
+import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
+import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
+import { PagenotfoundComponent } from './modules/pagenot/components/pagenotfound/pagenotfound.component';
 
 registerLocaleData(es);
 
@@ -82,8 +86,11 @@ registerLocaleData(es);
     ForgotComponent,
     ViewadminComponent,
     ViewveterinarianComponent,
-    ViewgrocerComponent
-    
+    ViewgrocerComponent,
+    NavbarAdminComponent,
+    NavbarGrocerComponent,
+    NavbarVeterinarianComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,9 +105,15 @@ registerLocaleData(es);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    LayoutModule
+    LayoutModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }, CanClientGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: NZ_I18N, useValue: es_ES },
+    CanClientGuard,
+    CanAdminGuard,
+    CanGrocerGuard,
+    CanVeterinarianGuard
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from '../../../../auth/login/services/auth.service';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalSignoutComponent } from '../modal-signout/modal-signout.component';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/login/services/auth.service';
+import { ModalSignoutComponent } from 'src/app/modules/client/components/viewclient/modal-signout/modal-signout.component';
+
 @Component({
-  selector: 'app-navbar-client',
-  templateUrl: './navbar-client.component.html',
-  styleUrls: ['./navbar-client.component.css'],
-  providers: [AuthService],
+  selector: 'app-navbar-veterinarian',
+  templateUrl: './navbar-veterinarian.component.html',
+  styleUrls: ['./navbar-veterinarian.component.css'],
 })
-export class NavbarClientComponent implements OnInit {
+export class NavbarVeterinarianComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -20,24 +20,21 @@ export class NavbarClientComponent implements OnInit {
       shareReplay()
     );
   public user$: Observable<any> = this.authServices.afAuth.user;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
     private router: Router,
     private dialog: MatDialog
   ) {}
-
-  ngOnInit() {}
-  //function the logout
   onSignOut() {
     const dialogRef = this.dialog.open(ModalSignoutComponent);
-    dialogRef.afterClosed().subscribe((res)=>{
-      if(res){
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
         this.onLogout();
       }
     });
   }
-  //call at service signout on firebase
   onLogout() {
     try {
       this.authServices.logout();

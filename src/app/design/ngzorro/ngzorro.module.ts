@@ -12,6 +12,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 const NgZorroMaterialComponents = [
   NzPageHeaderModule,
@@ -25,7 +26,8 @@ const NgZorroMaterialComponents = [
   NzFormModule,
   NzInputModule,
   NzButtonModule,
-  NzNotificationModule
+  NzNotificationModule,
+  NzResultModule
 ]
 
 

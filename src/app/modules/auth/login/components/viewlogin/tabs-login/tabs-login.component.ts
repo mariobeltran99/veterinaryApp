@@ -15,6 +15,8 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { map, take, tap } from 'rxjs/operators';
+import { Users } from 'src/app/modules/auth/interfaces/user';
 
 import { AuthService } from '../../../services/auth.service';
 @Component({
@@ -42,6 +44,7 @@ export class TabsLoginComponent implements OnInit {
     private router: Router
   ) {}
 
+  
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: new FormControl(null, [
@@ -95,6 +98,7 @@ export class TabsLoginComponent implements OnInit {
       passwordConfirm: new FormControl(null, [Validators.required]),
     });
   }
+  
   //validation with dirty and touched
   isFieldValid1(field: string) {
     const login = this.registerForm.get(field);
@@ -185,11 +189,32 @@ export class TabsLoginComponent implements OnInit {
           .login(email, password)
           .then((res) => {
             this.resetLoginForm();
-            if (res && res.user.emailVerified) {
-              this.router.navigate(['/client']);
-            } else if (res) {
-              this.router.navigate(['/verify']);
-            }
+            this.authServices.getRole(res.user.uid).subscribe(respond => {
+              const user = respond.docs[0].data() as Users; 
+              switch(user.role){
+                case 'Administrador':
+                  if (res && res.user.emailVerified) {
+                    this.router.navigate(['/admin']);
+                  } else if (res) {
+                    this.router.navigate(['/verify']);
+                  }  
+                break;
+                case 'Cliente':
+                  if (res && res.user.emailVerified) {
+                    this.router.navigate(['/client']);
+                  } else if (res) {
+                    this.router.navigate(['/verify']);
+                  }  
+                break;
+                case 'Bodeguero':
+  
+                break;
+                case 'Veterinario':
+                  
+                break;
+              } 
+            })
+            
           })
           .catch((err) => {
             this.createNotification(
@@ -207,7 +232,6 @@ export class TabsLoginComponent implements OnInit {
       }
     }
   }
-
   createNotification(type: string, title: string, content: string) {
     this.notification.create(type, title, content);
   }
@@ -234,7 +258,7 @@ export class TabsLoginComponent implements OnInit {
               .register(email, password, users)
               .then((res) => {
                 this.resetRegisterForm();
-                this.authServices.sendVerificationEmail().then((res)=>{
+                /*this.authServices.sendVerificationEmail().then((res)=>{
                   this.router.navigate(['/verify']);
                 }).catch(ex => {
                   this.createNotification(
@@ -242,7 +266,8 @@ export class TabsLoginComponent implements OnInit {
                     'Error al enviar el correo electrónico',
                     'Compruebe su conexión con internet'
                   );
-                });
+                });*/
+                this.router.navigate(['/client']);
               })
               .catch((err) => {
                 this.createNotification(

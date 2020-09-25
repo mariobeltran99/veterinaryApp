@@ -13,7 +13,6 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Contact } from 'src/app/home/interfaces/contact';
-import { DocumentReference } from '@angular/fire/firestore';
 import { ContactService } from 'src/app/home/services/contact.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
@@ -45,9 +44,7 @@ export class ContactformComponent implements OnInit {
       ]),
       email: new FormControl(null, [
         Validators.required,
-        Validators.pattern(
-          /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-        ),
+        Validators.email,
         Validators.maxLength(100),
       ]),
       affair: new FormControl(null, [
@@ -64,11 +61,8 @@ export class ContactformComponent implements OnInit {
 
   //validation with dirty and touched
   isFieldValid(field: string) {
-    return (
-      (this.contactForm.get(field).touched ||
-        this.contactForm.get(field).dirty) &&
-      !this.contactForm.get(field).valid
-    );
+    const contact = this.contactForm.get(field);
+    return (contact.touched || contact.dirty) && !contact.valid;
   }
   //get message errors
   getErrorMessage(field: string): string {
@@ -87,7 +81,7 @@ export class ContactformComponent implements OnInit {
         }
         break;
       case 'email':
-        if (forms.hasError('pattern')) {
+        if (forms.hasError('email')) {
           message =
             'El correo ingresado es inválido, debe cumplir este formato: juan@gmail.com';
         } else if (forms.hasError('maxlength')) {
@@ -145,9 +139,10 @@ export class ContactformComponent implements OnInit {
     this.notification.create(type, title, content);
   }
   resetForm() {
-    this.contactForm.reset();
-    Object.keys(this.contactForm.controls).forEach(key => {
-      this.contactForm.controls[key].setErrors(null);
+    const contact = this.contactForm;
+    contact.reset();
+    Object.keys(contact.controls).forEach((key) => {
+      contact.controls[key].setErrors(null);
     });
   }
 }

@@ -21,37 +21,25 @@ export class VerifyComponent implements OnInit {
   public user$: Observable<any> = this.authServices.afAuth.user;
 
   ngOnInit(): void {}
-
   onSendEmail() {
-    this.authServices.sendVerificationEmail().then((res) =>{
-      this.notification.create(
-        'info',
-        'El correo electrónico se ha enviado de nuevo',
-        'Por favor, revise su bandeja de entrada'
-      );
-    }).catch(ex => {
-      this.notification.create(
-        'info',
-        'El correo electrónico no llego a su destinatario',
-        'Por favor, inténtelo de nuevo'
-      );
-    });
-  }
-  onVerify() {
-    this.authServices.getCurrentUser().then((res) => {
-      console.log(res.emailVerified);
-      if (res.emailVerified) {
-        this.router.navigate(['/client']);
-      } else {
+    this.authServices
+      .sendVerificationEmail()
+      .then((res) => {
         this.notification.create(
           'info',
-          'El correo electrónico no está verficado',
-          'Por favor, confirme el correo electrónico para ingresar a su cuenta'
+          'El correo electrónico se ha enviado de nuevo',
+          'Por favor, revise su bandeja de entrada'
         );
-      }
-    });
+      })
+      .catch((ex) => {
+        this.notification.create(
+          'info',
+          'El correo electrónico no llego a su destinatario',
+          'Por favor, inténtelo de nuevo'
+        );
+      });
   }
-  onLogout(){
+  onLogout() {
     this.authServices.logout();
     this.router.navigate(['/login']);
   }

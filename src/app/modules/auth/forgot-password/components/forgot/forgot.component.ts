@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faEnvelope, faPaw } from '@fortawesome/free-solid-svg-icons';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
 import { AuthService } from '../../../login/services/auth.service';
 import {
   FormGroup,
@@ -9,7 +8,6 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -36,27 +34,19 @@ export class ForgotComponent implements OnInit {
     });
   }
   isFieldValid1(field: string) {
-    return (
-      (this.forgotForm.get(field).touched ||
-        this.forgotForm.get(field).dirty) &&
-      !this.forgotForm.get(field).valid
-    );
+    const forgot = this.forgotForm.get(field);
+    return (forgot.touched || forgot.dirty) && !forgot.valid;
   }
   getErrorMessage1(field: string): string {
     let message;
     const forms = this.forgotForm.get(field);
     if (forms.hasError('required')) {
       message = 'El campo es requerido.';
-    }
-    switch (field) {
-      case 'email':
-        if (forms.hasError('email')) {
-          message =
-            'El correo ingresado es inválido, debe cumplir este formato: juan@gmail.com';
-        } else if (forms.hasError('maxlength')) {
-          message = 'Debe contener como máximo cien caracteres';
-        }
-        break;
+    } else if (forms.hasError('email')) {
+      message =
+        'El correo ingresado es inválido, debe cumplir este formato: juan@gmail.com';
+    } else if (forms.hasError('maxlength')) {
+      message = 'Debe contener como máximo cien caracteres';
     }
     return message;
   }
@@ -88,10 +78,11 @@ export class ForgotComponent implements OnInit {
       );
     }
   }
-  resetForgotForm(){
-    this.forgotForm.reset();
-    Object.keys(this.forgotForm.controls).forEach((key) => {
-      this.forgotForm.controls[key].setErrors(null);
+  resetForgotForm() {
+    const forgot = this.forgotForm;
+    forgot.reset();
+    Object.keys(forgot.controls).forEach((key) => {
+      forgot.controls[key].setErrors(null);
     });
   }
 }

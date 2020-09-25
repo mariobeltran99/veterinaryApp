@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { first, map, switchMap } from 'rxjs/operators';
-import { auth } from 'firebase/app';
+import { first, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -54,17 +53,21 @@ export class AuthService extends RoleValidator {
     } catch (ex) {}
   }
   getCurrentUser() {
-    return this.afAuth.authState.pipe(first()).toPromise();
+    try{
+      return this.afAuth.authState.pipe(first()).toPromise();
+    }catch(ex){} 
   }
   async sendVerificationEmail(): Promise<void> {
-    return (await this.afAuth.currentUser).sendEmailVerification();
+    try{
+      return (await this.afAuth.currentUser).sendEmailVerification();
+    }catch(ex){}
   }
   resetPassword(email: string): Promise<void> {
     try {
       return this.afAuth.sendPasswordResetEmail(email);
     } catch (ex) {}
   }
-  //create User with Login in Firestore
+  //create User with Login in Firestore unique Clients
   createUserData(user: User, users: Users) {
     const userRef: AngularFirestoreDocument<Users> = this.afirestore.doc(
       `users/${user.uid}`
@@ -90,30 +93,7 @@ export class AuthService extends RoleValidator {
       .collection<Users>('users', (ref) => ref.where('dui', '==', dui))
       .get();
   }
-  public usersElements:Array<Users> = [];
-  //pass the data in the array
-  loadElementsExistsDUI(duis: string){ 
-    this.getExistsDUI(duis).subscribe((respond) => {
-      respond.docs.forEach((value) => {
-        const data = value.data();
-        const id = value.id;
-        const users: Users = {
-          uid: id,
-          email: data.email,
-          name: data.name,
-          lastname: data.lastname,
-          dui: data.dui,
-          age: data.age,
-          displayName: data.displayName,
-          photoURL: data.photoURL,
-          createDate: data.createDate.toDate(),
-          role: data.role,
-          disabled: data.disabled,
-        };
-        this.usersElements.push(users);
-      });
-    });
-  }
+  //get Role on the User
   getRole(uid: string): Observable<firebase.firestore.QuerySnapshot> {
     return this.afirestore
       .collection<Users>('users', (ref) => ref.where('uid', '==', uid))

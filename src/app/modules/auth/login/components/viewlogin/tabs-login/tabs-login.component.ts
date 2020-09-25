@@ -15,9 +15,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { map, take, tap } from 'rxjs/operators';
 import { Users } from 'src/app/modules/auth/interfaces/user';
-
 import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-tabs-login',
@@ -44,7 +42,6 @@ export class TabsLoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: new FormControl(null, [
@@ -98,11 +95,11 @@ export class TabsLoginComponent implements OnInit {
       passwordConfirm: new FormControl(null, [Validators.required]),
     });
   }
-  
+
   //validation with dirty and touched
   isFieldValid1(field: string) {
     const login = this.registerForm.get(field);
-    return (login.touched || this.loginForm.get(field).dirty) && !login.valid;
+    return (login.touched || login.dirty) && !login.valid;
   }
   isFieldValid2(field: string) {
     const register = this.registerForm.get(field);
@@ -189,32 +186,35 @@ export class TabsLoginComponent implements OnInit {
           .login(email, password)
           .then((res) => {
             this.resetLoginForm();
-            this.authServices.getRole(res.user.uid).subscribe(respond => {
-              const user = respond.docs[0].data() as Users; 
-              switch(user.role){
-                case 'Administrador':
-                  if (res && res.user.emailVerified) {
-                    this.router.navigate(['/admin']);
-                  } else if (res) {
-                    this.router.navigate(['/verify']);
-                  }  
-                break;
-                case 'Cliente':
-                  if (res && res.user.emailVerified) {
-                    this.router.navigate(['/client']);
-                  } else if (res) {
-                    this.router.navigate(['/verify']);
-                  }  
-                break;
-                case 'Bodeguero':
-  
-                break;
-                case 'Veterinario':
-                  
-                break;
-              } 
-            })
-            
+            this.authServices.getRole(res.user.uid).subscribe((respond) => {
+              const user = respond.docs[0].data() as Users;
+              if (user.disabled) {
+                this.createNotification(
+                  'warning',
+                  'Error al iniciar sesión',
+                  'El usuario está inhabilitado contácte al administrador del sitio'
+                );
+              } else {
+                if (res && res.user.emailVerified) {
+                  switch (user.role) {
+                    case 'Cliente':
+                      this.router.navigate(['/client']);
+                      break;
+                    case 'Administrador':
+                      this.router.navigate(['/admin']);
+                      break;
+                    case 'Bodeguero':
+                      this.router.navigate(['/grocer']);
+                      break;
+                    case 'Veterinario':
+                      this.router.navigate(['/veterinarian']);
+                      break;
+                  }
+                } else if (res) {
+                  this.router.navigate(['/verify']);
+                }
+              }
+            });
           })
           .catch((err) => {
             this.createNotification(
@@ -238,44 +238,61 @@ export class TabsLoginComponent implements OnInit {
   onRegister() {
     if (this.registerForm.valid) {
       const users = this.registerForm.value;
-      const email = this.registerForm.get('email').value;
-      const password = this.registerForm.get('password').value;
-      const passwordConfirm = this.registerForm.get('passwordConfirm').value;
-      const name = this.registerForm.get('name').value;
-      const lastname = this.registerForm.get('lastname').value;
-      const dui = this.registerForm.get('dui').value;
+      const {
+        name,
+        lastname,
+        dui,
+        email,
+        password,
+        passwordConfirm,
+      } = this.registerForm.value;
       const reg = new RegExp('^\\s');
+      //valid password
       if (password === passwordConfirm) {
-        if(reg.test(name) == true && reg.test(lastname)){
+        //check the spaces on field name and lastname
+        if (reg.test(name) == true && reg.test(lastname)) {
           this.createNotification(
             'warning',
             'Advertencia al Enviar',
             'Hay campos vacíos rellenados con espacios o tabulaciones'
           );
-        }else{
+        } else {
           try {
-            this.authServices
-              .register(email, password, users)
-              .then((res) => {
-                this.resetRegisterForm();
-                /*this.authServices.sendVerificationEmail().then((res)=>{
-                  this.router.navigate(['/verify']);
-                }).catch(ex => {
-                  this.createNotification(
-                    'error',
-                    'Error al enviar el correo electrónico',
-                    'Compruebe su conexión con internet'
-                  );
-                });*/
-                this.router.navigate(['/client']);
-              })
-              .catch((err) => {
+            this.authServices.getExistsDUI(dui).subscribe((respond) => {
+              const numberArray = respond.docs.length;
+              if (numberArray == 0) {
+                this.authServices
+                  .register(email, password, users)
+                  .then((res) => {
+                    this.resetRegisterForm();
+                    this.authServices
+                      .sendVerificationEmail()
+                      .then((res) => {
+                        this.router.navigate(['/verify']);
+                      })
+                      .catch((ex) => {
+                        this.createNotification(
+                          'error',
+                          'Error al enviar el correo electrónico',
+                          'Compruebe su conexión con internet'
+                        );
+                      });
+                  })
+                  .catch((err) => {
+                    this.createNotification(
+                      'warning',
+                      'Error al registrarse',
+                      'Ya existe el usuario en nuestra base de datos o pueda ser que usted haya inngresado mal sus credenciales'
+                    );
+                  });
+              } else {
                 this.createNotification(
                   'warning',
                   'Error al registrarse',
-                  'Ya existe el usuario en nuestra base de datos o pueda ser que usted haya inngresado mal sus credenciales'
+                  'Ya existe este DUI en nuestra base de datos'
                 );
-              });
+              }
+            });
           } catch (ex) {
             this.createNotification(
               'error',
@@ -301,15 +318,17 @@ export class TabsLoginComponent implements OnInit {
     }
   }
   resetRegisterForm() {
-    this.registerForm.reset();
-    Object.keys(this.registerForm.controls).forEach((key) => {
-      this.registerForm.controls[key].setErrors(null);
+    const register = this.registerForm;
+    register.reset();
+    Object.keys(register.controls).forEach((key) => {
+      register.controls[key].setErrors(null);
     });
   }
   resetLoginForm() {
-    this.loginForm.reset();
-    Object.keys(this.loginForm.controls).forEach((key) => {
-      this.loginForm.controls[key].setErrors(null);
+    const login = this.loginForm;
+    login.reset();
+    Object.keys(login.controls).forEach((key) => {
+      login.controls[key].setErrors(null);
     });
   }
 }

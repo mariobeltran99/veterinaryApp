@@ -1,0 +1,21 @@
+.imp{
+    width: 100%;
+    font-size: 1em;
+}
+textarea{
+    resize: none;
+    overflow: scroll;
+}
+.boxarea{
+    resize: none;  
+}
+fa-icon{
+    font-size: 2em;
+}
+.iconbot{
+    font-size: 1em;
+}
+.mat-button{
+    background-color: #407088;
+    color: white;
+}

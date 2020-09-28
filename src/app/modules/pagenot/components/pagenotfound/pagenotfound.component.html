@@ -1,0 +1,10 @@
+<mat-toolbar>
+    <span><fa-icon [icon]="faPaw" class="iconlog"></fa-icon> Veterinaria</span>
+ </mat-toolbar>
+<nz-result nzStatus="404" nzTitle="404" nzSubTitle="Lo sentimos, esta página que ha visitado no existe.">
+    <div nz-result-extra>
+        <button mat-raised-button (click)="returnPage()">
+            Ir a la página principal
+        </button>
+    </div>
+</nz-result>

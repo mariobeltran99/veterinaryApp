@@ -1,0 +1,62 @@
+<form [formGroup]="contactForm" (ngSubmit)="sendContact()">
+  <mat-form-field appearance="outline" class="imp">
+    <mat-label>Nombre y Apellido</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Ej: Juan González"
+      formControlName="name"
+      autocomplete="off"
+    />
+    <fa-icon [icon]="faUser" matSuffix></fa-icon>
+    <mat-error *ngIf="isFieldValid('name')">{{
+      getErrorMessage("name")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="imp">
+    <mat-label>Correo Electrónico</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Ej: juan@gmail.com"
+      formControlName="email"
+      autocomplete="off"
+    />
+    <fa-icon [icon]="faEnvelope" matSuffix></fa-icon>
+    <mat-error *ngIf="isFieldValid('email')">{{
+      getErrorMessage("email")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="imp">
+    <mat-label>Asunto</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Ej: Consultas para loros"
+      formControlName="affair"
+      autocomplete="off"
+    />
+    <fa-icon [icon]="faAffair" matSuffix></fa-icon>
+    <mat-error *ngIf="isFieldValid('affair')">{{
+      getErrorMessage("affair")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="imp">
+    <mat-label>Mensaje</mat-label>
+    <textarea
+      class="boxarea"
+      matInput
+      placeholder="Escriba su mensaje"
+      formControlName="message"
+      autocomplete="off"
+      maxlength="250"
+      #met
+    ></textarea>
+    <fa-icon [icon]="faComment" matSuffix></fa-icon>
+    <mat-hint align="end">{{met.value.length || 0}}/250</mat-hint>
+    <mat-error *ngIf="isFieldValid('message')">{{
+      getErrorMessage("message")
+    }}</mat-error>
+  </mat-form-field>
+  <button type="submit" color="primary" mat-button [disabled]="!contactForm.valid"><fa-icon [icon]="faPaperP" class="iconbot"></fa-icon> Enviar</button>
+</form>

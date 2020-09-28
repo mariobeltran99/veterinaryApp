@@ -669,9 +669,10 @@
   >
     <h2 class="titleFo">Empresa</h2>
     <ul>
-      <li><a href="" class="intd">Acerca de</a></li>
-      <li><a href="" class="intd">Servicios</a></li>
-      <li><a href="" class="intd">Contacto</a></li>
+      <li><a href="#Acercade" class="intd">Acerca de</a></li>
+      <li><a href="#Servicios" class="intd">Servicios</a></li>
+      <li><a href="#Departamento" class="intd">Departamentos</a></li>
+      <li><a href="#Contacto" class="intd">Contacto</a></li>
     </ul>
   </div>
   <div
@@ -687,9 +688,9 @@
   >
     <h2 class="titleFo">Legal</h2>
     <ul>
-      <li><a href="" class="intd">Licencias</a></li>
-      <li><a href="" class="intd">Políticas de Servicio</a></li>
-      <li><a href="" class="intd">Políticas de Privacidad</a></li>
+      <li><a class="intd" [routerLink]="['/licenses']">Licencias</a></li>
+      <li><a class="intd" (click)="onServicePolicies()">Políticas de Servicio</a></li>
+      <li><a class="intd" (click)="onPrivacyPolicies()">Políticas de Privacidad</a></li>
     </ul>
   </div>
   <div

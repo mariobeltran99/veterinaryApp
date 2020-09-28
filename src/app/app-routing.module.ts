@@ -1,66 +1,85 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
-import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
+//Guards
 import { CanAdminGuard } from './modules/auth/guards/can-admin.guard';
 import { CanClientGuard } from './modules/auth/guards/can-client.guard';
 import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
+import { CanVerifyGuard } from './modules/auth/guards/can-verify.guard';
 import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
+//views
+import { HomeComponent } from './home/home.component';
+import { LicensesComponent } from './home/licenses/licenses.component';
+import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
+import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
 import { ViewloginComponent } from './modules/auth/login/components/viewlogin/viewlogin.component';
 import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
 import { ViewclientComponent } from './modules/client/components/viewclient/viewclient.component';
 import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
 import { PagenotfoundComponent } from './modules/pagenot/components/pagenotfound/pagenotfound.component';
 import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
-
+import { ManageUsersComponent } from './modules/admin/components/manage-users/manage-users.component';
+import { ManageProvidersComponent } from './modules/admin/components/manage-providers/manage-providers.component';
+import { ManageProductsComponent } from './modules/admin/components/manage-products/manage-products.component';
+import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: '',
-    component:HomeComponent,
-    pathMatch: 'full'
+    component: HomeComponent,
+    pathMatch: 'full',
   },
   {
-    path:'login',
-    component:ViewloginComponent
+    path: 'login',
+    component: ViewloginComponent,
   },
   {
-    path:'client',
-    component:ViewclientComponent,
-    canActivate: [CanClientGuard]
+    path: 'client',
+    component: ViewclientComponent,
+    canActivate: [CanClientGuard],
   },
   {
-    path:'verify',
-    component:VerifyComponent
+    path: 'verify',
+    component: VerifyComponent,
+    canActivate: [CanVerifyGuard],
   },
   {
-    path:'forgot-password',
-    component:ForgotComponent
+    path: 'forgot-password',
+    component: ForgotComponent,
   },
   {
-    path:'admin',
-    component:ViewadminComponent,
-    canActivate:[CanAdminGuard]
+    path: 'admin',
+    component: ViewadminComponent,
+    canActivate: [CanAdminGuard],
+    children: [
+      { path: 'manage-home', component: ManageHomeComponent },
+      { path: 'manage-users', component: ManageUsersComponent },
+      { path: 'manage-providers', component: ManageProvidersComponent },
+      { path: 'manage-products', component: ManageProductsComponent },
+    ],
   },
   {
-    path:'veterinarian',
-    component:ViewveterinarianComponent,
-    canActivate:[CanVeterinarianGuard]
+    path: 'veterinarian',
+    component: ViewveterinarianComponent,
+    canActivate: [CanVeterinarianGuard],
   },
   {
-    path:'grocer',
-    component:ViewgrocerComponent,
-    canActivate:[CanGrocerGuard]
-  },{
-    path:'**',
-    component:PagenotfoundComponent
-  }
+    path: 'grocer',
+    component: ViewgrocerComponent,
+    canActivate: [CanGrocerGuard],
+  },
+  {
+    path: 'licenses',
+    component: LicensesComponent,
+  },
+  {
+    path: '**',
+    component: PagenotfoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

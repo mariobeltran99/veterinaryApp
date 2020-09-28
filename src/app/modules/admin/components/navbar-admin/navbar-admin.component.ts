@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/login/services/auth.service';
 import { ModalSignoutComponent } from 'src/app/modules/client/components/viewclient/modal-signout/modal-signout.component';
 
@@ -24,7 +24,8 @@ export class NavbarAdminComponent {
     private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   onSignOut() {
@@ -42,5 +43,17 @@ export class NavbarAdminComponent {
     } catch (ex) {
       console.error(ex);
     }
+  }
+  showManageHome() {
+    this.router.navigate(['manage-home'], { relativeTo: this.route });
+  }
+  showManageUser() {
+    this.router.navigate(['manage-users'], { relativeTo: this.route });
+  }
+  showManageProvider() {
+    this.router.navigate(['manage-providers'], { relativeTo: this.route });
+  }
+  showManageProduct() {
+    this.router.navigate(['manage-products'], { relativeTo: this.route });
   }
 }

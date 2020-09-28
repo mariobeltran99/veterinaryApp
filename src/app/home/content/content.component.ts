@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   faShieldAlt,
   faUniversalAccess,
@@ -20,6 +21,8 @@ import {
   faMapMarkedAlt,
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
+import { PrivacyPoliciesComponent } from '../privacy-policies/privacy-policies.component';
+import { ServicePoliciesComponent } from '../service-policies/service-policies.component';
 
 @Component({
   selector: 'app-content',
@@ -50,7 +53,7 @@ export class ContentComponent implements OnInit {
   view2: boolean;
   view3: boolean;
   view4: boolean;
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
     this.view1 = true;
@@ -80,5 +83,15 @@ export class ContentComponent implements OnInit {
       this.view3 = false;
       this.view4 = true;
     }
+  }
+  onServicePolicies(){
+    const dialogRef = this.dialog.open(ServicePoliciesComponent);
+    dialogRef.afterClosed().subscribe((res)=>{
+    });
+  }
+  onPrivacyPolicies(){
+    const dialogRef = this.dialog.open(PrivacyPoliciesComponent);
+    dialogRef.afterClosed().subscribe((res)=>{
+    });
   }
 }

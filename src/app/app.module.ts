@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './design/material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LayoutModule } from '@angular/cdk/layout';
 
 //---others modules imports
 import { FormsModule } from '@angular/forms';
@@ -27,6 +28,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+
+//---guards imports
+import { CanClientGuard } from './modules/auth/guards/can-client.guard';
+import { CanVerifyGuard } from './modules/auth/guards/can-verify.guard';
+import { CanAdminGuard } from './modules/auth/guards/can-admin.guard';
+import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
+import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
 
 //---components imports
 import { AppComponent } from './app.component';
@@ -45,21 +53,23 @@ import { NavbarLoginComponent } from './modules/auth/login/components/viewlogin/
 import { TabsLoginComponent } from './modules/auth/login/components/viewlogin/tabs-login/tabs-login.component';
 import { ViewclientComponent } from './modules/client/components/viewclient/viewclient.component';
 import { NavbarClientComponent } from './modules/client/components/viewclient/navbar-client/navbar-client.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
 import { ModalSignoutComponent } from './modules/client/components/viewclient/modal-signout/modal-signout.component';
 import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
 import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
 import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
 import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
-import { CanClientGuard } from './modules/auth/guards/can-client.guard';
 import { NavbarAdminComponent } from './modules/admin/components/navbar-admin/navbar-admin.component';
 import { NavbarGrocerComponent } from './modules/grocer/components/navbar-grocer/navbar-grocer.component';
 import { NavbarVeterinarianComponent } from './modules/veterinarian/components/navbar-veterinarian/navbar-veterinarian.component';
-import { CanAdminGuard } from './modules/auth/guards/can-admin.guard';
-import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
-import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
 import { PagenotfoundComponent } from './modules/pagenot/components/pagenotfound/pagenotfound.component';
+import { ServicePoliciesComponent } from './home/service-policies/service-policies.component';
+import { PrivacyPoliciesComponent } from './home/privacy-policies/privacy-policies.component';
+import { LicensesComponent } from './home/licenses/licenses.component';
+import { ManageUsersComponent } from './modules/admin/components/manage-users/manage-users.component';
+import { ManageProvidersComponent } from './modules/admin/components/manage-providers/manage-providers.component';
+import { ManageProductsComponent } from './modules/admin/components/manage-products/manage-products.component';
+import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
 
 registerLocaleData(es);
 
@@ -91,6 +101,13 @@ registerLocaleData(es);
     NavbarGrocerComponent,
     NavbarVeterinarianComponent,
     PagenotfoundComponent,
+    ServicePoliciesComponent,
+    PrivacyPoliciesComponent,
+    LicensesComponent,
+    ManageUsersComponent,
+    ManageProvidersComponent,
+    ManageProductsComponent,
+    ManageHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +129,8 @@ registerLocaleData(es);
     CanClientGuard,
     CanAdminGuard,
     CanGrocerGuard,
-    CanVeterinarianGuard
+    CanVeterinarianGuard,
+    CanVerifyGuard,
   ],
   bootstrap: [AppComponent],
 })

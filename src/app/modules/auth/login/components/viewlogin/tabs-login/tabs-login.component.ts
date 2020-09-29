@@ -220,7 +220,7 @@ export class TabsLoginComponent implements OnInit {
             this.createNotification(
               'warning',
               'Error al iniciar sesión',
-              'No existe el usuario en nuestra base de datos o pueda ser que usted haya inngresado mal sus credenciales'
+              'No existe el usuario en nuestra base de datos o pueda ser que usted haya ingresado mal sus credenciales'
             );
           });
       } catch (ex) {
@@ -231,6 +231,20 @@ export class TabsLoginComponent implements OnInit {
         );
       }
     }
+  }
+  onLoginGoogle() {
+    this.authServices
+      .loginGoogle()
+      .then((respond) => {
+        this.router.navigate(['/client']);
+      })
+      .catch((ex) => {
+        this.createNotification(
+          'warning',
+          'Error al registrarse',
+          'No hubo conexión a la base de datos'
+        );
+      });
   }
   createNotification(type: string, title: string, content: string) {
     this.notification.create(type, title, content);

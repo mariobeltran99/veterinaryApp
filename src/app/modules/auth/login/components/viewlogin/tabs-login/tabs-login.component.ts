@@ -235,9 +235,7 @@ export class TabsLoginComponent implements OnInit {
   onLoginGoogle() {
     this.authServices
       .loginGoogle()
-      .then((respond) => {
-        this.router.navigate(['/client']);
-      })
+      .then((respond) => {})
       .catch((ex) => {
         this.createNotification(
           'warning',

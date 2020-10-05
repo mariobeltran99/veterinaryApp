@@ -13,7 +13,7 @@ export class CanGrocerGuard implements CanActivate {
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return this.authServices.user$.pipe(
       take(1),
-      map((user) => user && this.authServices.isClient(user)),
+      map((user) => user && this.authServices.isGrocer(user)),
       tap((canGrocer)=>{
         if(!canGrocer){
           this.router.navigate(['/login']);

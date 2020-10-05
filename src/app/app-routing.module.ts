@@ -21,6 +21,7 @@ import { ManageUsersComponent } from './modules/admin/components/manage-users/ma
 import { ManageProvidersComponent } from './modules/admin/components/manage-providers/manage-providers.component';
 import { ManageProductsComponent } from './modules/admin/components/manage-products/manage-products.component';
 import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
+import { StepsInitialComponent } from './modules/auth/steps-initial/steps-initial.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotComponent,
+  },
+  {
+    path: 'steps-register',
+    component: StepsInitialComponent,
+    canActivate: [CanClientGuard]
   },
   {
     path: 'admin',

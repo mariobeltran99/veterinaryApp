@@ -1,21 +1,28 @@
-.title{
-    margin-top: 40px;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align: center;
+.title {
+  margin-top: 40px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
 }
-.imp{
-    font-size: 1em;
-    width: 100%;
+.imp {
+  font-size: 1em;
+  width: 100%;
 }
-fa-icon{
-    font-size: 1.5em;
+fa-icon {
+  font-size: 1.5em;
 }
-.error{
-    font-size: 1em;
+.error {
+  font-size: 1em;
 }
-.mat-raised-button{
-    width: 100%;
-    background-color: teal;
-    color: white;
+.mat-raised-button {
+  width: 100%;
+  background-color: teal;
+  color: white;
+}
+.mat-flat-button {
+  width: 100%;
+}
+.ics {
+  font-size: 1.5em;
+  margin-right: 15px;
 }

@@ -98,7 +98,7 @@ export class TabsLoginComponent implements OnInit {
 
   //validation with dirty and touched
   isFieldValid1(field: string) {
-    const login = this.registerForm.get(field);
+    const login = this.loginForm.get(field);
     return (login.touched || login.dirty) && !login.valid;
   }
   isFieldValid2(field: string) {
@@ -201,7 +201,7 @@ export class TabsLoginComponent implements OnInit {
                       this.router.navigate(['/client']);
                       break;
                     case 'Administrador':
-                      this.router.navigate(['/admin']);
+                      this.router.navigate(['/admin/manage-home']);
                       break;
                     case 'Bodeguero':
                       this.router.navigate(['/grocer']);
@@ -220,7 +220,7 @@ export class TabsLoginComponent implements OnInit {
             this.createNotification(
               'warning',
               'Error al iniciar sesión',
-              'No existe el usuario en nuestra base de datos o pueda ser que usted haya inngresado mal sus credenciales'
+              'No existe el usuario en nuestra base de datos o pueda ser que usted haya ingresado mal sus credenciales'
             );
           });
       } catch (ex) {
@@ -231,6 +231,18 @@ export class TabsLoginComponent implements OnInit {
         );
       }
     }
+  }
+  onLoginGoogle() {
+    this.authServices
+      .loginGoogle()
+      .then((respond) => {})
+      .catch((ex) => {
+        this.createNotification(
+          'warning',
+          'Error al registrarse',
+          'No hubo conexión a la base de datos'
+        );
+      });
   }
   createNotification(type: string, title: string, content: string) {
     this.notification.create(type, title, content);
@@ -250,7 +262,7 @@ export class TabsLoginComponent implements OnInit {
       //valid password
       if (password === passwordConfirm) {
         //check the spaces on field name and lastname
-        if (reg.test(name) == true && reg.test(lastname)) {
+        if (reg.test(name) === true || reg.test(lastname) === true) {
           this.createNotification(
             'warning',
             'Advertencia al Enviar',
@@ -260,7 +272,7 @@ export class TabsLoginComponent implements OnInit {
           try {
             this.authServices.getExistsDUI(dui).subscribe((respond) => {
               const numberArray = respond.docs.length;
-              if (numberArray == 0) {
+              if (numberArray === 0) {
                 this.authServices
                   .register(email, password, users)
                   .then((res) => {

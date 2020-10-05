@@ -48,18 +48,24 @@
         type="submit"
         [disabled]="!loginForm.valid"
       >
-        Ingresar
+        <i nz-icon nzType="login" class="ics"></i>Ingresar
       </button>
     </form>
-    <br>
-    <br>
+    <br />
+    <br />
+    <button mat-flat-button color="warn" (click)="onLoginGoogle()">
+      <i nz-icon nzType="google" class="ics"></i>Ingresa con una cuenta de
+      Google
+    </button>
+    <br />
+    <br />
     <button
-        mat-raised-button
-        color="primary"
-        [routerLink]="['/forgot-password']" 
-      >
-        Recuperar contraseña
-      </button>
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/forgot-password']"
+    >
+      <i nz-icon nzType="key" class="ics"></i>Recuperar contraseña
+    </button>
   </mat-tab>
   <mat-tab label="Registrarse">
     <h1 class="title">Registrarse</h1>
@@ -111,8 +117,8 @@
           getErrorMessage2("dui")
         }}</mat-error>
       </mat-form-field>
-      <br>
-      <br>
+      <br />
+      <br />
       <mat-form-field appearance="outline" class="imp">
         <mat-label>Edad</mat-label>
         <input
@@ -128,8 +134,8 @@
           getErrorMessage2("age")
         }}</mat-error>
       </mat-form-field>
-      <br>
-      <br>
+      <br />
+      <br />
       <mat-form-field appearance="outline" class="imp">
         <mat-label>Correo Electrónico</mat-label>
         <input
@@ -189,7 +195,9 @@
             <fa-icon [icon]="faVisibility"></fa-icon>
           </ng-template>
         </button>
-        <mat-hint align="end">{{ passregConfirm.value.length || 0 }}/16</mat-hint>
+        <mat-hint align="end"
+          >{{ passregConfirm.value.length || 0 }}/16</mat-hint
+        >
         <mat-error *ngIf="isFieldValid2('passwordConfirm')">{{
           getErrorMessage2("passwordConfirm")
         }}</mat-error>
@@ -202,10 +210,10 @@
         type="submit"
         [disabled]="!registerForm.valid"
       >
-        Registrar
+        <i nz-icon nzType="user-add" class="ics"></i>Registrar
       </button>
-      <br>
-      <br>
+      <br />
+      <br />
     </form>
   </mat-tab>
 </mat-tab-group>

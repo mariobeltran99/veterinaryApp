@@ -262,7 +262,7 @@ export class TabsLoginComponent implements OnInit {
       //valid password
       if (password === passwordConfirm) {
         //check the spaces on field name and lastname
-        if (reg.test(name) == true || reg.test(lastname) == true) {
+        if (reg.test(name) === true || reg.test(lastname) === true) {
           this.createNotification(
             'warning',
             'Advertencia al Enviar',
@@ -272,7 +272,7 @@ export class TabsLoginComponent implements OnInit {
           try {
             this.authServices.getExistsDUI(dui).subscribe((respond) => {
               const numberArray = respond.docs.length;
-              if (numberArray == 0) {
+              if (numberArray === 0) {
                 this.authServices
                   .register(email, password, users)
                   .then((res) => {

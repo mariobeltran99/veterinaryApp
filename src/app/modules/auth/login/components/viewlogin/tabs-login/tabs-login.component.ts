@@ -98,7 +98,7 @@ export class TabsLoginComponent implements OnInit {
 
   //validation with dirty and touched
   isFieldValid1(field: string) {
-    const login = this.registerForm.get(field);
+    const login = this.loginForm.get(field);
     return (login.touched || login.dirty) && !login.valid;
   }
   isFieldValid2(field: string) {

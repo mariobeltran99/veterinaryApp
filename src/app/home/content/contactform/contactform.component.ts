@@ -108,7 +108,7 @@ export class ContactformComponent implements OnInit {
     if (this.contactForm.valid) {
       const reg = new RegExp('^\\s');
       if (
-        reg.test(this.contactForm.get('affair').value) == true &&
+        reg.test(this.contactForm.get('affair').value) == true ||
         reg.test(this.contactForm.get('message').value) == true
       ) {
         this.createNotification(

@@ -201,7 +201,7 @@ export class TabsLoginComponent implements OnInit {
                       this.router.navigate(['/client']);
                       break;
                     case 'Administrador':
-                      this.router.navigate(['/admin']);
+                      this.router.navigate(['/admin/manage-home']);
                       break;
                     case 'Bodeguero':
                       this.router.navigate(['/grocer']);
@@ -262,7 +262,7 @@ export class TabsLoginComponent implements OnInit {
       //valid password
       if (password === passwordConfirm) {
         //check the spaces on field name and lastname
-        if (reg.test(name) == true && reg.test(lastname)) {
+        if (reg.test(name) == true || reg.test(lastname) == true) {
           this.createNotification(
             'warning',
             'Advertencia al Enviar',

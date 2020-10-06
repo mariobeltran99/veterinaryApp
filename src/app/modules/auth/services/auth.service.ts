@@ -7,8 +7,8 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
-import { Users } from '../../interfaces/user';
-import { RoleValidator } from '../../helpers/roleValidator';
+import { Users } from '../interfaces/user';
+import { RoleValidator } from '../helpers/roleValidator';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Injectable({

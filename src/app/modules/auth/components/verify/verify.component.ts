@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../../login/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-verify',

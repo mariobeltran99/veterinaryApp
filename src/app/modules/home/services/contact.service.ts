@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contact } from 'src/app/home/interfaces/contact';
+import { Contact } from '../interfaces/contact';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 @Injectable({

@@ -7,21 +7,22 @@ import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
 import { CanVerifyGuard } from './modules/auth/guards/can-verify.guard';
 import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
 //views
-import { HomeComponent } from './home/home.component';
-import { LicensesComponent } from './home/licenses/licenses.component';
+import { HomeComponent } from './modules/home/components/home/home.component';
+import { LicensesComponent } from './modules/home/components/licenses/licenses.component';
 import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
-import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
-import { ViewloginComponent } from './modules/auth/login/components/viewlogin/viewlogin.component';
-import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
+import { ForgotComponent } from './modules/auth/components/forgot/forgot.component';
+import { ViewloginComponent } from './modules/auth/components/login/viewlogin/viewlogin.component';
+import { VerifyComponent } from './modules/auth/components/verify/verify.component';
 import { ViewclientComponent } from './modules/client/components/viewclient/viewclient.component';
 import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
-import { PagenotfoundComponent } from './modules/pagenot/components/pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './modules/core/components/pagenotfound/pagenotfound.component';
 import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
 import { ManageUsersComponent } from './modules/admin/components/manage-users/manage-users.component';
 import { ManageProvidersComponent } from './modules/admin/components/manage-providers/manage-providers.component';
 import { ManageProductsComponent } from './modules/admin/components/manage-products/manage-products.component';
 import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
-import { StepsInitialComponent } from './modules/auth/steps-initial/steps-initial.component';
+import { StepsInitialComponent } from './modules/auth/components/steps-initial/steps-initial.component';
+
 
 const routes: Routes = [
   {

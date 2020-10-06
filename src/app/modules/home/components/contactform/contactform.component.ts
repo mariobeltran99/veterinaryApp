@@ -12,8 +12,8 @@ import {
   faPaperPlane,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { Contact } from 'src/app/home/interfaces/contact';
-import { ContactService } from 'src/app/home/services/contact.service';
+import { Contact } from '../../interfaces/contact';
+import { ContactService } from '../../services/contact.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-contactform',

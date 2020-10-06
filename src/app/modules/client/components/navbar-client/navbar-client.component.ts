@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from '../../../../auth/login/services/auth.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalSignoutComponent } from '../modal-signout/modal-signout.component';
+import { ModalSignoutComponent } from '../../../core/components/modal-signout/modal-signout.component';
 @Component({
   selector: 'app-navbar-client',
   templateUrl: './navbar-client.component.html',

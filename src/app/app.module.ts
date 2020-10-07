@@ -87,9 +87,6 @@ registerLocaleData(es);
     Departament4Component,
     ContactformComponent,
     FooterComponent,
-    ViewloginComponent,
-    NavbarLoginComponent,
-    TabsLoginComponent,
     ViewclientComponent,
     NavbarClientComponent,
     VerifyComponent,
@@ -110,6 +107,9 @@ registerLocaleData(es);
     ManageProductsComponent,
     ManageHomeComponent,
     StepsInitialComponent,
+    ViewloginComponent,
+    NavbarLoginComponent,
+    TabsLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +124,7 @@ registerLocaleData(es);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    LayoutModule,
+    LayoutModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },

@@ -23,7 +23,6 @@ import { ManageProductsComponent } from './modules/admin/components/manage-produ
 import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
 import { StepsInitialComponent } from './modules/auth/components/steps-initial/steps-initial.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -52,7 +51,7 @@ const routes: Routes = [
   {
     path: 'steps-register',
     component: StepsInitialComponent,
-    canActivate: [CanClientGuard]
+    canActivate: [CanClientGuard],
   },
   {
     path: 'admin',

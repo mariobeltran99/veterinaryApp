@@ -4,83 +4,53 @@ import { Routes, RouterModule } from '@angular/router';
 import { CanAdminGuard } from './modules/auth/guards/can-admin.guard';
 import { CanClientGuard } from './modules/auth/guards/can-client.guard';
 import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
-import { CanVerifyGuard } from './modules/auth/guards/can-verify.guard';
 import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
-//views
-import { HomeComponent } from './home/home.component';
-import { LicensesComponent } from './home/licenses/licenses.component';
-import { ViewadminComponent } from './modules/admin/components/viewadmin/viewadmin.component';
-import { ForgotComponent } from './modules/auth/forgot-password/components/forgot/forgot.component';
-import { ViewloginComponent } from './modules/auth/login/components/viewlogin/viewlogin.component';
-import { VerifyComponent } from './modules/auth/sendEmail/components/verify/verify.component';
-import { ViewclientComponent } from './modules/client/components/viewclient/viewclient.component';
-import { ViewgrocerComponent } from './modules/grocer/components/viewgrocer/viewgrocer.component';
-import { PagenotfoundComponent } from './modules/pagenot/components/pagenotfound/pagenotfound.component';
-import { ViewveterinarianComponent } from './modules/veterinarian/components/viewveterinarian/viewveterinarian.component';
-import { ManageUsersComponent } from './modules/admin/components/manage-users/manage-users.component';
-import { ManageProvidersComponent } from './modules/admin/components/manage-providers/manage-providers.component';
-import { ManageProductsComponent } from './modules/admin/components/manage-products/manage-products.component';
-import { ManageHomeComponent } from './modules/admin/components/manage-home/manage-home.component';
-import { StepsInitialComponent } from './modules/auth/steps-initial/steps-initial.component';
+import { CanSecretaryGuard } from './modules/auth/guards/can-secretary.guard';
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
-    component: HomeComponent,
-    pathMatch: 'full',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'login',
-    component: ViewloginComponent,
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'client',
-    component: ViewclientComponent,
+    loadChildren:  () => import('./modules/client/client.module').then(m => m.ClientModule),
     canActivate: [CanClientGuard],
   },
   {
-    path: 'verify',
-    component: VerifyComponent,
-    canActivate: [CanVerifyGuard],
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotComponent,
-  },
-  {
-    path: 'steps-register',
-    component: StepsInitialComponent,
-    canActivate: [CanClientGuard]
-  },
-  {
     path: 'admin',
-    component: ViewadminComponent,
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [CanAdminGuard],
-    children: [
-      { path: 'manage-home', component: ManageHomeComponent },
-      { path: 'manage-users', component: ManageUsersComponent },
-      { path: 'manage-providers', component: ManageProvidersComponent },
-      { path: 'manage-products', component: ManageProductsComponent },
-    ],
+
   },
   {
     path: 'veterinarian',
-    component: ViewveterinarianComponent,
+    loadChildren: () => import('./modules/veterinarian/veterinarian.module').then(m => m.VeterinarianModule),
     canActivate: [CanVeterinarianGuard],
   },
   {
     path: 'grocer',
-    component: ViewgrocerComponent,
+    loadChildren: () => import('./modules/grocer/grocer.module').then(m => m.GrocerModule),
     canActivate: [CanGrocerGuard],
   },
   {
-    path: 'licenses',
-    component: LicensesComponent,
+    path: 'secretary',
+    loadChildren: () => import('./modules/secretary/secretary.module').then(m => m.SecretaryModule),
+    canActivate: [CanSecretaryGuard]
+  },
+  {
+    path: 'steps-register',
+    loadChildren: () => import('./modules/auth/models/step-initial.module').then(m => m.StepInitialModule),
+    canActivate: [CanClientGuard],
   },
   {
     path: '**',
-    component: PagenotfoundComponent,
+    loadChildren: () => import('./modules/core/core.module').then(m => m.CoreModule),
   },
 ];
 

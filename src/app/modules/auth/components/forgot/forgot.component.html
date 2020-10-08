@@ -1,0 +1,46 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" [routerLink]="['/login']">
+    <fa-icon [icon]="faBack"></fa-icon>
+  </button>
+  <span><fa-icon [icon]="faPaw" class="iconlog"></fa-icon> Veterinaria</span>
+</mat-toolbar>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12">
+      <div class="content">
+        <mat-card class="cards">
+          <h1 class="title">Recuperar Contraseña</h1>
+          <br />
+          <form [formGroup]="forgotForm" (ngSubmit)="onReset()">
+            <mat-form-field appearance="outline" class="imp">
+              <mat-label>Correo Electrónico</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Ej: juan@gmail.com"
+                formControlName="email"
+                autocomplete="off"
+              />
+              <fa-icon class="itns" [icon]="faEnvelope" matSuffix></fa-icon>
+              <mat-error *ngIf="isFieldValid1('email')" class="error">{{
+                getErrorMessage1("email")
+              }}</mat-error>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              type="submit"
+              [disabled]="!forgotForm.valid"
+            >
+              Solicitar recuperación de contraseña
+            </button>
+          </form>
+          <br />
+          <br />
+          <button mat-raised-button [routerLink]="['/login']">
+            Iniciar Sesión
+          </button>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

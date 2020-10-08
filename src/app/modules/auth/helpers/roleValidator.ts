@@ -14,4 +14,7 @@ export class RoleValidator{
     isGrocer(user:Users):boolean{
         return user.role === 'Bodeguero';
     }
+    isSecretary(user:Users):boolean{
+        return user.role === 'Secretaria';
+    }
 }

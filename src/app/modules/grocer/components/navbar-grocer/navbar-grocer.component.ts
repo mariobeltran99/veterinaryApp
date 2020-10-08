@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/modules/auth/login/services/auth.service';
-import { ModalSignoutComponent } from 'src/app/modules/client/components/viewclient/modal-signout/modal-signout.component';
+import { AuthService } from '../../../auth/services/auth.service';
+import { ModalSignoutComponent } from '../../../core/components/modal-signout/modal-signout.component';
 
 @Component({
   selector: 'app-navbar-grocer',

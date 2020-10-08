@@ -1,26 +1,33 @@
 <mat-toolbar>
    <span><fa-icon [icon]="faPaw" class="iconlog"></fa-icon> Veterinaria</span>
 </mat-toolbar>
-<ng-container *ngIf="user$ | async as user; else elseTemplate">
-    <div class="content">
-        <mat-card class="cards">     
-            <h1 class="title">¡Gracias por Registrarte!</h1>
-            <br>
-            <p>Te enviaremos un correo a <strong>{{ user?.email }}</strong></p>
-            <br>
-            <p>Por favor, revisa tu correo y dale click al enlace de verificación</p>
-            <br>
-            <button mat-raised-button (click)="onSendEmail()">Reenviar Correo de Verificación</button>
-            <br>
-            <p>Si has dado click al enlace para verificar tu correo, verfica si ya estás en el sistema</p>
-            <br>
-            <br>
-            <button mat-raised-button (click)="onLogout()">Cerrar Sesión</button>
-        </mat-card>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12">
+            <ng-container *ngIf="user$ | async as user; else elseTemplate">
+                <div class="content">
+                    <mat-card class="cards">     
+                        <h1 class="title">¡Gracias por Registrarte!</h1>
+                        <br>
+                        <p>Te enviaremos un correo a <strong>{{ user?.email }}</strong></p>
+                        <br>
+                        <p>Por favor, revisa tu correo y dale click al enlace de verificación</p>
+                        <br>
+                        <button mat-raised-button (click)="onSendEmail()">Reenviar Correo de Verificación</button>
+                        <br>
+                        <p>Si has dado click al enlace para verificar tu correo, verfica si ya estás en el sistema</p>
+                        <br>
+                        <br>
+                        <button mat-raised-button (click)="onLogout()">Cerrar Sesión</button>
+                    </mat-card>
+                </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                Cargando...
+            </ng-template>
+        </div>
     </div>
-</ng-container>
-<ng-template #elseTemplate>
-    Cargando...
-</ng-template>
+</div>
+
 
 

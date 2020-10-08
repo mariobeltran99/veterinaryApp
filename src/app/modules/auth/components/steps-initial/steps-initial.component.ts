@@ -133,6 +133,7 @@ export class StepsInitialComponent implements OnInit {
             const obj = {
               name: name,
               lastname: lastname,
+              displayName: name + ' ' + lastname,
               dui: dui,
               age: age,
             };

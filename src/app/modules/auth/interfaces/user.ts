@@ -1,4 +1,4 @@
-export type Roles = 'Administrador' | 'Cliente' | 'Veterinario' | 'Bodeguero';
+export type Roles = 'Administrador' | 'Cliente' | 'Veterinario' | 'Bodeguero' | 'Secretaria';
 export interface Users {
   uid: string;
   email: string;

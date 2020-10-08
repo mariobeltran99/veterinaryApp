@@ -1,129 +1,137 @@
 <mat-toolbar>
   <span><fa-icon [icon]="faPaw" class="iconlog"></fa-icon> Veterinaria</span>
 </mat-toolbar>
-<ng-container *ngIf="user$ | async as user; else elseTemplate">
-<div class="content">
-  <mat-card class="cards">
-    <h1 class="title">¡Gracias por Registrarte {{ user?.displayName }}!</h1>
-    <br />
-    <br />
-    <h2 class="subtitle">
-      Para finalizar tu registro dentro de la plataforma ingresa los siguientes
-      datos
-    </h2>
-    <mat-vertical-stepper [linear]="true" #stepper>
-      <mat-step [stepControl]="nameForm">
-        <form [formGroup]="nameForm">
-          <ng-template matStepLabel>Ingrese su Nombre y Apellido</ng-template>
-          <mat-form-field appearance="outline" class="imp">
-            <mat-label>Nombre</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Ej: Juan"
-              formControlName="name"
-              autocomplete="off"
-            />
-            <fa-icon [icon]="faUser" matSuffix></fa-icon>
-            <mat-error *ngIf="isFieldValid('name')" class="error">{{
-              getErrorMessage("name")
-            }}</mat-error>
-          </mat-form-field>
-          <br />
-          <br />
-          <mat-form-field appearance="outline" class="imp">
-            <mat-label>Apellido</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Ej: Gómez"
-              formControlName="lastname"
-              autocomplete="off"
-            />
-            <fa-icon [icon]="faUser" matSuffix></fa-icon>
-            <mat-error *ngIf="isFieldValid('lastname')" class="error">{{
-              getErrorMessage("lastname")
-            }}</mat-error>
-          </mat-form-field>
-          <br />
-          <br />
-          <div>
-            <button mat-flat-button matStepperNext>
-              <i nz-icon nzType="down" class="ics"></i>Siguiente
-            </button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="infoForm">
-        <form [formGroup]="infoForm">
-          <ng-template matStepLabel>Ingrese su DUI y Edad</ng-template>
-          <mat-form-field appearance="outline" class="imp">
-            <mat-label>DUI</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Ej: 74551595-5"
-              formControlName="dui"
-              autocomplete="off"
-            />
-            <fa-icon [icon]="faDui" matSuffix></fa-icon>
-            <mat-error *ngIf="isFieldValid2('dui')" class="error">{{
-              getErrorMessage2("dui")
-            }}</mat-error>
-          </mat-form-field>
-          <br />
-          <br />
-          <mat-form-field appearance="outline" class="imp">
-            <mat-label>Edad</mat-label>
-            <input
-              type="number"
-              matInput
-              placeholder="Ej: 34"
-              formControlName="age"
-              step="1"
-              autocomplete="off"
-            />
-            <fa-icon [icon]="faAge" matSuffix></fa-icon>
-            <mat-error *ngIf="isFieldValid2('age')" class="error">{{
-              getErrorMessage2("age")
-            }}</mat-error>
-          </mat-form-field>
-          <br />
-          <br />
-          <div>
-            <button mat-flat-button matStepperPrevious>
-              <i nz-icon nzType="up" class="ics"></i>Regresar
-            </button>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-lg-8 col-md-8 col-xl-8">
+      <ng-container *ngIf="user$ | async as user; else elseTemplate">
+        <div class="content">
+          <mat-card class="cards">
+            <h1 class="title">
+              ¡Gracias por Registrarte {{ user?.displayName }}!
+            </h1>
             <br />
             <br />
-            <button mat-flat-button matStepperNext>
-              <i nz-icon nzType="down" class="ics"></i>Siguiente
-            </button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Finalización</ng-template>
-        <p>Haz click para finalizar el proceso.</p>
-        <div>
-          <button mat-flat-button matStepperPrevious>
-            <i nz-icon nzType="up" class="ics"></i>Regresar
-          </button>
-          <br>
-          <br>
-          <button
-            mat-raised-button
-            (click)="onUpdateUserGoogle(user?.uid)"
-            [disabled]="!nameForm.valid && !infoForm.valid"
-          >
-            <i nz-icon nzType="audit" class="ics"></i>Finalizar
-          </button>
+            <h2 class="subtitle">
+              Para finalizar tu registro dentro de la plataforma ingresa los
+              siguientes datos
+            </h2>
+            <mat-vertical-stepper [linear]="true" #stepper>
+              <mat-step [stepControl]="nameForm">
+                <form [formGroup]="nameForm">
+                  <ng-template matStepLabel
+                    >Ingrese su Nombre y Apellido</ng-template
+                  >
+                  <mat-form-field appearance="outline" class="imp">
+                    <mat-label>Nombre</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Ej: Juan"
+                      formControlName="name"
+                      autocomplete="off"
+                    />
+                    <fa-icon [icon]="faUser" matSuffix></fa-icon>
+                    <mat-error *ngIf="isFieldValid('name')" class="error">{{
+                      getErrorMessage("name")
+                    }}</mat-error>
+                  </mat-form-field>
+                  <br />
+                  <br />
+                  <mat-form-field appearance="outline" class="imp">
+                    <mat-label>Apellido</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Ej: Gómez"
+                      formControlName="lastname"
+                      autocomplete="off"
+                    />
+                    <fa-icon [icon]="faUser" matSuffix></fa-icon>
+                    <mat-error *ngIf="isFieldValid('lastname')" class="error">{{
+                      getErrorMessage("lastname")
+                    }}</mat-error>
+                  </mat-form-field>
+                  <br />
+                  <br />
+                  <div>
+                    <button mat-flat-button matStepperNext>
+                      <i nz-icon nzType="down" class="ics"></i>Siguiente
+                    </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step [stepControl]="infoForm">
+                <form [formGroup]="infoForm">
+                  <ng-template matStepLabel>Ingrese su DUI y Edad</ng-template>
+                  <mat-form-field appearance="outline" class="imp">
+                    <mat-label>DUI</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      placeholder="Ej: 74551595-5"
+                      formControlName="dui"
+                      autocomplete="off"
+                    />
+                    <fa-icon [icon]="faDui" matSuffix></fa-icon>
+                    <mat-error *ngIf="isFieldValid2('dui')" class="error">{{
+                      getErrorMessage2("dui")
+                    }}</mat-error>
+                  </mat-form-field>
+                  <br />
+                  <br />
+                  <mat-form-field appearance="outline" class="imp">
+                    <mat-label>Edad</mat-label>
+                    <input
+                      type="number"
+                      matInput
+                      placeholder="Ej: 34"
+                      formControlName="age"
+                      step="1"
+                      autocomplete="off"
+                    />
+                    <fa-icon [icon]="faAge" matSuffix></fa-icon>
+                    <mat-error *ngIf="isFieldValid2('age')" class="error">{{
+                      getErrorMessage2("age")
+                    }}</mat-error>
+                  </mat-form-field>
+                  <br />
+                  <br />
+                  <div>
+                    <button mat-flat-button matStepperPrevious>
+                      <i nz-icon nzType="up" class="ics"></i>Regresar
+                    </button>
+                    <br />
+                    <br />
+                    <button mat-flat-button matStepperNext>
+                      <i nz-icon nzType="down" class="ics"></i>Siguiente
+                    </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Finalización</ng-template>
+                <p>Haz click para finalizar el proceso.</p>
+                <div>
+                  <button mat-flat-button matStepperPrevious>
+                    <i nz-icon nzType="up" class="ics"></i>Regresar
+                  </button>
+                  <br />
+                  <br />
+                  <button
+                    mat-raised-button
+                    (click)="onUpdateUserGoogle(user?.uid)"
+                    [disabled]="!nameForm.valid && !infoForm.valid"
+                  >
+                    <i nz-icon nzType="audit" class="ics"></i>Finalizar
+                  </button>
+                </div>
+              </mat-step>
+            </mat-vertical-stepper>
+          </mat-card>
         </div>
-      </mat-step>
-    </mat-vertical-stepper>
-  </mat-card>
+      </ng-container>
+      <ng-template #elseTemplate> Cargando... </ng-template>
+    </div>
+  </div>
 </div>
-</ng-container>
-<ng-template #elseTemplate>
-    Cargando...
-</ng-template>

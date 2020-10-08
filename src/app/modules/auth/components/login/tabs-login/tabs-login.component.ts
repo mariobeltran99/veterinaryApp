@@ -209,9 +209,12 @@ export class TabsLoginComponent implements OnInit {
                     case 'Veterinario':
                       this.router.navigate(['/veterinarian']);
                       break;
+                    case 'Secretaria':
+                      this.router.navigate(['/secretary']);
+                      break;
                   }
                 } else if (res) {
-                  this.router.navigate(['/verify']);
+                  this.router.navigate(['/login/verify']);
                 }
               }
             });
@@ -280,7 +283,7 @@ export class TabsLoginComponent implements OnInit {
                     this.authServices
                       .sendVerificationEmail()
                       .then((res) => {
-                        this.router.navigate(['/verify']);
+                        this.router.navigate(['/login/verify']);
                       })
                       .catch((ex) => {
                         this.createNotification(

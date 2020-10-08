@@ -1,20 +1,23 @@
+.iconlog{
+    margin-left: 40px;
+    margin-right: 15px;
+
+}
+.example-icon{
+    font-size: 1em;
+}
 .imp{
     font-size: 1em;
     width: 100%;
 }
-fa-icon{
+.itns{
     font-size: 1.5em;
 }
 .error{
     font-size: 1em;
 }
 .content{
-    display: block;
-    margin: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    padding-left: 350px;
-    padding-right:350px;
+    margin-top: 40px;
 }
 .title{
     font-size: 2em;

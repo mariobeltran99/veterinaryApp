@@ -1,7 +1,9 @@
 .layout{
     min-height: 100vh;
 }
-
+a{
+    text-decoration: none;
+}
 .logo {
     width: 230px;
     height: 31px;
@@ -28,9 +30,6 @@ nz-header {
     color: black;
     z-index: 30;
 
-}
-.ind{
-    float: right;
 }
 .bard{
     background-color: #f4f4f4;

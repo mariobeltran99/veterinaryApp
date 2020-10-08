@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faEnvelope, faPaw } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPaw, faReply } from '@fortawesome/free-solid-svg-icons';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService } from '../../services/auth.service';
 import {
@@ -17,6 +17,7 @@ import {
 export class ForgotComponent implements OnInit {
   faPaw = faPaw;
   faEnvelope = faEnvelope;
+  faBack = faReply;
   forgotForm: FormGroup;
   constructor(
     private fb: FormBuilder,

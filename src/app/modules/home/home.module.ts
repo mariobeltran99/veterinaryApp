@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 //--ngZorro imports
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
@@ -36,6 +37,8 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 
 //--others imports
 import { ReactiveFormsModule } from '@angular/forms';
@@ -60,7 +63,8 @@ const materialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatToolbarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCardModule
 ]
 const zorroComponents = [
   NzPageHeaderModule,
@@ -70,7 +74,9 @@ const zorroComponents = [
   NzCarouselModule,
   NzGridModule,
   NzCardModule,
-  NzNotificationModule
+  NzNotificationModule,
+  NzPopoverModule,
+  NzBackTopModule
 ]
 
 @NgModule({

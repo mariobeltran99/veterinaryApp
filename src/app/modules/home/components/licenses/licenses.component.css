@@ -9,3 +9,15 @@
 span{
     font-size: 1.5em;
 }
+.spaces{
+    margin-top: 30px;
+}
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+.texts{
+    text-align: justify;
+    font-size: 1em;
+}

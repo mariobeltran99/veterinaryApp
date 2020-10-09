@@ -36,6 +36,7 @@ p {
 }
 .imp {
   font-size: 1em;
+  width: 100%;
 }
 .error {
   font-size: 1em;
@@ -47,4 +48,14 @@ p {
 .ics {
   font-size: 1.5em;
   margin-right: 15px;
+}
+@media (max-width: 575.98px) {  
+  .imp{
+    font-size: 1em;
+    width: 100%;
+  }
+  .mat-raised-button {
+    display: block;
+    margin: auto;
+  }
 }

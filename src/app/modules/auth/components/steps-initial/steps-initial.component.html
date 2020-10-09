@@ -55,7 +55,7 @@
                   <br />
                   <br />
                   <div>
-                    <button mat-flat-button matStepperNext>
+                    <button mat-flat-button matStepperNext class="btn btn-block">
                       <i nz-icon nzType="down" class="ics"></i>Siguiente
                     </button>
                   </div>
@@ -98,12 +98,12 @@
                   <br />
                   <br />
                   <div>
-                    <button mat-flat-button matStepperPrevious>
+                    <button mat-flat-button matStepperPrevious class="btn btn-block">
                       <i nz-icon nzType="up" class="ics"></i>Regresar
                     </button>
                     <br />
                     <br />
-                    <button mat-flat-button matStepperNext>
+                    <button mat-flat-button matStepperNext class="btn btn-block">
                       <i nz-icon nzType="down" class="ics"></i>Siguiente
                     </button>
                   </div>
@@ -113,7 +113,7 @@
                 <ng-template matStepLabel>Finalización</ng-template>
                 <p>Haz click para finalizar el proceso.</p>
                 <div>
-                  <button mat-flat-button matStepperPrevious>
+                  <button mat-flat-button matStepperPrevious class="btn btn-block">
                     <i nz-icon nzType="up" class="ics"></i>Regresar
                   </button>
                   <br />
@@ -122,6 +122,7 @@
                     mat-raised-button
                     (click)="onUpdateUserGoogle(user?.uid)"
                     [disabled]="!nameForm.valid && !infoForm.valid"
+                    class="btn btn-block"
                   >
                     <i nz-icon nzType="audit" class="ics"></i>Finalizar
                   </button>

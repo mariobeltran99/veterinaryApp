@@ -1,13 +1,43 @@
-<nz-header>
-    <div class="logo">
-        <h1 class="emblem-var"><fa-icon [icon]="fapaw" class="iconlog"></fa-icon>Veterinaria</h1>
-    </div>
-    <ul nz-menu class="bard" nzMode="horizontal">
-      <li nz-menu-item nzSelected="true"><a href="#Inicio">Inicio</a></li>
-      <li nz-menu-item><a href="#Acercade">Acerca de</a></li>
-      <li nz-menu-item><a href="#Servicios">Servicios</a></li>
-      <li nz-menu-item><a href="#Departamento">Departamentos</a></li>
-      <li nz-menu-item><a href="#Contacto">Contacto</a></li>
-      <li nz-menu-item><a [routerLink]="['/login']">Iniciar Sesión</a></li>   
-    </ul>
+<nz-header class="headLg">
+  <div class="logo">
+    <h1 class="emblem-var">
+      <fa-icon [icon]="fapaw" class="iconlog"></fa-icon>Veterinaria
+    </h1>
+  </div>
+  <ul nz-menu class="bard" nzMode="horizontal">
+    <li nz-menu-item nzSelected="true"><a href="#Inicio">Inicio</a></li>
+    <li nz-menu-item><a href="#Acercade">Acerca de</a></li>
+    <li nz-menu-item><a href="#Servicios">Servicios</a></li>
+    <li nz-menu-item><a href="#Departamento">Departamentos</a></li>
+    <li nz-menu-item><a href="#Contacto">Contacto</a></li>
+    <li nz-menu-item><a [routerLink]="['/login']">Iniciar Sesión</a></li>
+  </ul>
 </nz-header>
+<nz-header class="headSm">
+  <button
+    mat-icon-button
+    class="example-icon"
+    nz-popover
+    nzPopoverTitle="Menú"
+    nzPopoverTrigger="click"
+    [nzPopoverContent]="contentTemplate"
+    nzPopoverPlacement="bottomLeft"
+  >
+    <fa-icon [icon]="faMenu"></fa-icon>
+  </button>
+  <div>
+    <h1 class="emblem">
+      <fa-icon [icon]="fapaw" class="iconlog1"></fa-icon>Veterinaria
+    </h1>
+  </div>
+</nz-header>
+<ng-template #contentTemplate> 
+  <ul nz-menu class="bard" nzMode="vertical">
+    <li nz-menu-item nzSelected="true"><a href="#Inicio">Inicio</a></li>
+    <li nz-menu-item><a href="#Acercade">Acerca de</a></li>
+    <li nz-menu-item><a href="#Servicios">Servicios</a></li>
+    <li nz-menu-item><a href="#Departamento">Departamentos</a></li>
+    <li nz-menu-item><a href="#Contacto">Contacto</a></li>
+    <li nz-menu-item><a [routerLink]="['/login']">Iniciar Sesión</a></li>
+  </ul>
+</ng-template>

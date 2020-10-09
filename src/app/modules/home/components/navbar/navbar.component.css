@@ -22,6 +22,16 @@ a{
     color: black;
     
 }
+.emblem{
+    float: left;
+    margin-top: 15.5px;
+    font-size: 1.5em;
+}
+.iconlog1{
+    float: left;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
 nz-header {
     position: fixed;
     width: 100%;
@@ -29,12 +39,14 @@ nz-header {
     background-color: #f4f4f4;
     color: black;
     z-index: 30;
-
+    display: none;
 }
 .bard{
     background-color: #f4f4f4;
 }
-
+.headSm{
+    width: 100%;
+}
 [nz-menu] {
     line-height: 64px;
     color:black;
@@ -44,4 +56,65 @@ nz-header {
 }
 [nz-menu-item]:focus{
     color:#f4f4f4;
+}
+.example-icon{
+    float: left;
+    margin-top: 15.5px;
+    font-size: 1.5em;
+    margin-right: 20px;
+    margin-left: 0px;
+}
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {  
+    .headLg{
+        display: none;
+    }
+    .headSm{
+        display: block;
+    }
+}
+/*Small devices (landscape phones, less than 768px)*/
+@media (max-width: 768px) {  
+    .headLg{
+        display: none;
+    }
+    .headSm{
+        display: block;
+    }
+}
+
+/* Medium devices (tablets, less than 992px)*/
+@media (max-width: 991.98px) {  
+    .headLg{
+        display: none;
+    }
+    .headSm{
+        display: block;
+    }
+}
+
+/* Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) { 
+    .headLg{
+        display: none;
+    }
+    .headSm{
+        display: block;
+    }
+}
+@media (min-width:1200px) and (max-width: 1440px) { 
+    .headLg{
+        display: block;
+    }
+    .headSm{
+        display: none;
+    }
+}
+@media (min-width:1441px) and (max-width: 2560px) { 
+    .headLg{
+        display: block;
+    }
+    .headSm{
+        display: none;
+    }
 }

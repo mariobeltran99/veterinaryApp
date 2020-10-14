@@ -3,18 +3,39 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <p *ngIf="user$ | async as user">{{ user?.email }}</p>
+      <h1 class="title">Administrador</h1>
+      <div *ngIf="photoURL !== null;else temp">
+        <img src="{{photoURL}}" class="imgUser">
+      </div>
+      <ng-template #temp>
+        <img src="../../../../../assets/img/profile.png" class="imgUser">
+      </ng-template>
+      <br>
+      <p class="title">{{displayName}}</p>
+      <br>
+      <a mat-list-item (click)="showManageHome()"><mat-icon class="tip">home</mat-icon>Inicio</a>
+      <br>
+      <a mat-list-item (click)="showManageUser()"><mat-icon class="tip">supervised_user_circle</mat-icon>Administrar Usuarios</a>
+      <br>
+      <a mat-list-item (click)="showManageProvider()"><mat-icon class="tip">shopping_basket</mat-icon>Administrar Proveedores</a>
+      <br>
+      <a mat-list-item (click)="showManageProduct()"><mat-icon class="tip">work_outline</mat-icon>Administrar Productos</a>
+      <br>
+      <a mat-list-item (click)="showManageMedicine()"><mat-icon class="tip">healing</mat-icon>Administrar Medicamentos</a>
+      <br>
+      <a mat-list-item (click)="showManageDepartament()"><mat-icon class="tip">business</mat-icon>Administrar Departamentos</a>
+      <br>
+      <a mat-list-item (click)="showManageAnimal()"><mat-icon class="tip">pets</mat-icon>Administrar Animales</a>
+      <br>
+      <a mat-list-item (click)="showManageMessage()"><mat-icon class="tip">message</mat-icon>Ver Mensajería</a>
+      <br>
+      <a mat-list-item (click)="showManageProfile()"><mat-icon class="tip">settings</mat-icon>Editar Perfil</a>
+      <br>
+      <a mat-list-item (click)="onSignOut()"><mat-icon class="tip">meeting_room</mat-icon>Cerrar Sesión</a>
       <br>
       <br>
-      <strong>Administrador</strong>
-      <br>
-      <a mat-list-item (click)="showManageHome()">Inicio</a>
-      <a mat-list-item (click)="showManageUser()">Administrar Usuarios</a>
-      <a mat-list-item (click)="showManageProvider()">Administrar Proveedores</a>
-      <a mat-list-item (click)="showManageProduct()">Administrar Productos</a>
-      <a mat-list-item (click)="onSignOut()">Cerrar Sesión</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

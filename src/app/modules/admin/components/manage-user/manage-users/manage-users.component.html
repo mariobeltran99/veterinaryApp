@@ -1,1 +1,33 @@
-<p>manage-users works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom">
+                <img mat-card-image src="../../../../../../assets/img/create_user.jpg" class="imgPortada">
+                <br>
+                <button mat-flat-button color="primary" (click)="showCreateUser()">Crear Usuarios</button>
+            </mat-card>
+        </div>
+        <br>
+        <br>
+        <div class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom">
+                <img mat-card-image src="../../../../../../assets/img/changes_user.jpg" class="imgPortada">
+                <br>
+                <button mat-flat-button color="primary" (click)="showCreateUser()">Gestionar Usuarios</button>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row justify-content-center space">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6">
+            <mat-card nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom">
+                <img mat-card-image src="../../../../../../assets/img/clients.jpg" class="imgPortada">
+                <br>
+                <button mat-flat-button color="primary" (click)="showCreateUser()">Ver Clientes</button>
+            </mat-card>
+        </div>
+    </div>
+    <br>
+</div>
+<ng-template #contentTemplate>
+    <p class="alert">Dale click al botón para realizar una acción dentro de ese módulo.</p>
+</ng-template>

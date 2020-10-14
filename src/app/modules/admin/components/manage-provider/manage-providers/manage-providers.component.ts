@@ -12,4 +12,7 @@ export class ManageProvidersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showCreateProvider(){
+    
+  }
 }

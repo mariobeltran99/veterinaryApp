@@ -25,6 +25,22 @@ const routes: Routes = [
         path: 'manage-products',
         loadChildren: () => import('./models/manage-product/manage-product.module').then(m => m.ManageProductModule)  
       },
+      { 
+        path: 'manage-medicines',
+        loadChildren: () => import('./models/manage-medicine/manage-medicine.module').then(m => m.ManageMedicineModule)  
+      },
+      { 
+        path: 'manage-animals',
+        loadChildren: () => import('./models/manage-animal/manage-animal.module').then(m => m.ManageAnimalModule)  
+      },
+      { 
+        path: 'manage-departaments',
+        loadChildren: () => import('./models/manage-departament/manage-departament.module').then(m => m.ManageDepartamentModule)  
+      },
+      { 
+        path: 'manage-messages',
+        loadChildren: () => import('./models/manage-message/manage-message.module').then(m => m.ManageMessageModule)  
+      },
     ],
   }
 ];

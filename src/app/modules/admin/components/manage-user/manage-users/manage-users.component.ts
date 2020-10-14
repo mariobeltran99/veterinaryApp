@@ -11,5 +11,8 @@ export class ManageUsersComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  showCreateUser(){
+    
+  }
 
 }

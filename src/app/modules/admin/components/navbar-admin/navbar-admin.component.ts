@@ -77,7 +77,7 @@ export class NavbarAdminComponent implements OnInit {
     this.router.navigate(['manage-medicines'], { relativeTo: this.route });
   }
   showManageDepartament(){
-    this.router.navigate(['manage-departaments'], { relativeTo: this.route });
+    this.router.navigate(['manage-departments'], { relativeTo: this.route });
   }
   showManageAnimal(){
     this.router.navigate(['manage-animals'], { relativeTo: this.route });

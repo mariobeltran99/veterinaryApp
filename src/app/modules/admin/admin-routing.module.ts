@@ -34,7 +34,7 @@ const routes: Routes = [
         loadChildren: () => import('./models/manage-animal/manage-animal.module').then(m => m.ManageAnimalModule)  
       },
       { 
-        path: 'manage-departaments',
+        path: 'manage-departments',
         loadChildren: () => import('./models/manage-departament/manage-departament.module').then(m => m.ManageDepartamentModule)  
       },
       { 

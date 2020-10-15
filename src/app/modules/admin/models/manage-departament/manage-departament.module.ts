@@ -4,6 +4,9 @@ import { ManageDepartamentRoutingModule } from './manage-departament-routing.mod
 
 //--components imports
 import { ManageDepartamentsComponent } from '../../components/manage-departament/manage-departaments/manage-departaments.component';
+import { AddDepartmentComponent } from '../../components/manage-departament/add-department/add-department.component';
+import { ViewDepartmentsComponent } from '../../components/manage-departament/view-departments/view-departments.component';
+import { ModalEditDepartmentComponent } from '../../components/manage-departament/modal-edit-department/modal-edit-department.component';
 
 //--material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -12,13 +15,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 //--zorro imports
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzTableModule } from 'ng-zorro-antd/table';
+
+//--other imports
+import { ReactiveFormsModule } from '@angular/forms'
+
+//--pipe imports
+import { FilterDepartmentsPipe } from '../../pipes/filter-departments.pipe';
 
 const components = [
-  ManageDepartamentsComponent
+  ManageDepartamentsComponent,
+  AddDepartmentComponent,
+  ViewDepartmentsComponent,
+  ModalEditDepartmentComponent
 ]
 
 const materialComponents = [
@@ -27,22 +42,27 @@ const materialComponents = [
   MatInputModule,
   MatIconModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatToolbarModule
 ]
 
 const zorroComponents = [
-  NzPopoverModule
+  NzPopoverModule,
+  NzMessageModule,
+  NzTableModule
 ]
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    FilterDepartmentsPipe
   ],
   imports: [
     CommonModule,
     ManageDepartamentRoutingModule,
     ...materialComponents,
-    ...zorroComponents
+    ...zorroComponents,
+    ReactiveFormsModule
   ]
 })
 export class ManageDepartamentModule { }

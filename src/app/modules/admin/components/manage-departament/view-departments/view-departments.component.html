@@ -1,0 +1,53 @@
+<mat-toolbar>
+    <button
+      mat-flat-button
+      class="example-icon"
+      [routerLink]="['/admin/manage-departments']"
+    >
+      <mat-icon>reply</mat-icon> Regresar
+    </button>
+</mat-toolbar>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card>
+                <form [formGroup]="searchForm">
+                    <mat-form-field appearance="outline" nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="left" class="imp">
+                        <mat-label>Búsqueda por nombre</mat-label>
+                        <input matInput placeholder="Ej: Cirujía" autocomplete="off" formControlName="search">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </form>    
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 space">
+            <nz-table #headerTable [nzData]="department" [nzPageSize]="20" [nzScroll]="{ y: '540px' }">
+                <thead>
+                  <tr>
+                    <th nzAlign="center" nzWidth="200px">Nombre</th>
+                    <th nzAlign="center">Descripción</th>
+                    <th nzAlign="center" nzWidth="100px">Editar</th>
+                    <th nzAlign="center" nzWidth="100px">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of headerTable.data | filterDepartments:filter">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.description }}</td>
+                    <td>
+                        <button mat-flat-button color="primary" (click)="showEditModal(data)"><mat-icon>create</mat-icon></button>
+                    </td>
+                    <td>
+                        <button mat-flat-button color="warn" (click)="deleteDepartment(data.id)"><mat-icon>delete_outline</mat-icon></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+        </div>
+    </div>
+</div>
+<ng-template #contentTemplate>
+    <p>Puedes escribir tu búsqueda en este campo.</p>
+</ng-template>

@@ -4,6 +4,7 @@ import { ManageMessageRoutingModule } from './manage-message-routing.module';
 
 //--components imports
 import { ManageMessagesComponent } from '../../components/manage-message/manage-messages/manage-messages.component';
+import { ModalMessageComponent } from '../../components/manage-message/modal-message/modal-message.component';
 
 //--material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 //--zorro imports
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 //--pipes imports
 import { FilterContactPipe } from '../../pipes/filter-contact.pipe';
@@ -25,7 +27,8 @@ import { FilterContactPipe } from '../../pipes/filter-contact.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const components = [
-  ManageMessagesComponent
+  ManageMessagesComponent,
+  ModalMessageComponent
 ]
 const materialComponents = [
   MatButtonModule,
@@ -38,7 +41,8 @@ const materialComponents = [
 
 const zorroComponents = [
   NzPopoverModule,
-  NzTableModule
+  NzTableModule,
+  NzMessageModule
 ]
 
 @NgModule({

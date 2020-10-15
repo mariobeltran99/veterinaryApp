@@ -1,9 +1,8 @@
+.mat-toolbar{
+    padding: 10px;
+}
 .space{
     margin-top: 30px;
-}
-.alert{
-    text-align: justify;
-    font-size: 1em;
 }
 .imp{
     width: 100%;

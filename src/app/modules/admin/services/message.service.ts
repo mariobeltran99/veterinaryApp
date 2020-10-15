@@ -12,6 +12,9 @@ export class MessageService {
   private collectionName = 'contact';
 
   getContact(): Observable<firebase.firestore.QuerySnapshot>{
-    return this.db.collection<Message>(this.collectionName,ref => ref.orderBy('email',"asc")).get();
+    return this.db.collection<Message>(this.collectionName,ref => ref.orderBy('name',"asc")).get();
+  }
+  deleteContact(id: string){
+    return this.db.collection(this.collectionName).doc(id).delete();
   }
 }

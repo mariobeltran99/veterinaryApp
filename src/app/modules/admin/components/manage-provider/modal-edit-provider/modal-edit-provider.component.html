@@ -1,15 +1,15 @@
 
-<h2 mat-dialog-title>Editar Departamento</h2>
+<h2 mat-dialog-title>Editar Proveedor</h2>
 <mat-dialog-content>
   <h3>Formulario</h3>
   <br>
-  <form [formGroup]="departmentForm">
+  <form [formGroup]="providerForm">
     <mat-form-field appearance="outline" class="imp" nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="left">
       <mat-label>Nombre</mat-label>
       <input
         type="text"
         matInput
-        placeholder="Ej: Cirujía"
+        placeholder="Ej: Coca Cola"
         formControlName="name"
         autocomplete="off"
       />
@@ -24,7 +24,7 @@
         matInput
         type="text"
         autocomplete="off"
-        placeholder="Ej: Sitio para operaciones"
+        placeholder="Ej: Proveedor de bebida"
         formControlName="description"
       />
       <mat-icon matSuffix>featured_play_list</mat-icon>
@@ -37,8 +37,8 @@
     <button
       mat-raised-button
       color="primary"
-      (click)="onEdit(depart.id)"
-      [disabled]="!departmentForm.valid"
+      (click)="onEdit(provider.id)"
+      [disabled]="!providerForm.valid"
       [mat-dialog-close]="true"
     ><mat-icon class="ic">create</mat-icon>Editar</button>
   </form>

@@ -29,9 +29,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 
-
-
-
 const components = [
   ViewadminComponent,
   NavbarAdminComponent,

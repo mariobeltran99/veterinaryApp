@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ViewDepartments } from '../../../interfaces/view-departments';
-import { DepartmentsService } from '../../../services/departments.service';
+import { ProvidersService } from '../../../services/providers.service';
 
 @Component({
-  selector: 'app-modal-edit-department',
-  templateUrl: './modal-edit-department.component.html',
-  styleUrls: ['./modal-edit-department.component.css']
+  selector: 'app-add-provider',
+  templateUrl: './add-provider.component.html',
+  styleUrls: ['./add-provider.component.css']
 })
-export class ModalEditDepartmentComponent implements OnInit {
+export class AddProviderComponent implements OnInit {
 
-  depart:ViewDepartments = null;
-  departmentForm:FormGroup;
+  providerForm:FormGroup;
   constructor(
-    private departmentsServices:DepartmentsService,private fb:FormBuilder,private messages:NzMessageService
+    private fb: FormBuilder,
+    private messages: NzMessageService,
+    private providerServices: ProvidersService
   ) { }
 
   ngOnInit() {
-    this.departmentForm = this.fb.group({
+    this.providerForm = this.fb.group({
       name: new FormControl(null, [
         Validators.required,
         Validators.pattern(
@@ -33,31 +33,14 @@ export class ModalEditDepartmentComponent implements OnInit {
         Validators.maxLength(60),
       ]),
     });
-    this.departmentForm.get('name').setValue(this.depart.name);
-    this.departmentForm.get('description').setValue(this.depart.description);
-  }
-  onEdit(id:string){
-    if(this.departmentForm.valid){
-      const { name, description } = this.departmentForm.value;
-      const reg = new RegExp('^\\s');
-      if( reg.test(name) == true || reg.test(description) == true){
-        this.messages.warning('Existen campos rellenados con espacios');
-      }else{
-        const animalEdit = {
-          name: name,
-          description: description
-        }
-        this.departmentsServices.editDepartmentFragment(id,animalEdit);
-      }
-    }
   }
   isFieldValid1(field: string) {
-    const depart = this.departmentForm.get(field);
-    return (depart.touched || depart.dirty) && !depart.valid;
+    const prov = this.providerForm.get(field);
+    return (prov.touched || prov.dirty) && !prov.valid;
   }
   getErrorMessage1(field: string): string {
     let message;
-    const forms = this.departmentForm.get(field);
+    const forms = this.providerForm.get(field);
     if (forms.hasError('required')) {
       message = 'El campo es requerido.';
     }
@@ -80,5 +63,33 @@ export class ModalEditDepartmentComponent implements OnInit {
         break;
     }
     return message;
+  }
+  onSave(){
+    if (this.providerForm.valid) {
+      const { name, description } = this.providerForm.value;
+      const reg = new RegExp('^\\s');
+      if (reg.test(description) == true || reg.test(name) == true) {
+        this.messages.warning('Existen campos rellenados con espacios');
+      } else {
+        const provider = {
+          name: name,
+          description: description,
+        };
+        this.providerServices.saveProvider(provider).then(res => {
+          this.messages.success('Se guardaron los datos exitosamente');
+          this.resetForm();
+          this.providerForm.get('name').setValue('');
+        }).catch(ex => {
+          this.messages.error('Se produjo un problema con la petición');
+        })
+      }
+    }
+  }
+  resetForm() {
+    const prov = this.providerForm;
+    prov.reset();
+    Object.keys(prov.controls).forEach((key) => {
+      prov.controls[key].setErrors(null);
+    });
   }
 }

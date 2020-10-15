@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ViewDepartments } from '../../../interfaces/view-departments';
-import { DepartmentsService } from '../../../services/departments.service';
+import { ViewProviders } from '../../../interfaces/view-providers';
+import { ProvidersService } from '../../../services/providers.service';
 
 @Component({
-  selector: 'app-modal-edit-department',
-  templateUrl: './modal-edit-department.component.html',
-  styleUrls: ['./modal-edit-department.component.css']
+  selector: 'app-modal-edit-provider',
+  templateUrl: './modal-edit-provider.component.html',
+  styleUrls: ['./modal-edit-provider.component.css']
 })
-export class ModalEditDepartmentComponent implements OnInit {
+export class ModalEditProviderComponent implements OnInit {
 
-  depart:ViewDepartments = null;
-  departmentForm:FormGroup;
+  providerForm:FormGroup;
+  provider:ViewProviders = null;
   constructor(
-    private departmentsServices:DepartmentsService,private fb:FormBuilder,private messages:NzMessageService
+    private providersServices:ProvidersService,private fb:FormBuilder,private messages:NzMessageService
   ) { }
 
   ngOnInit() {
-    this.departmentForm = this.fb.group({
+    this.providerForm = this.fb.group({
       name: new FormControl(null, [
         Validators.required,
         Validators.pattern(
@@ -33,31 +33,32 @@ export class ModalEditDepartmentComponent implements OnInit {
         Validators.maxLength(60),
       ]),
     });
-    this.departmentForm.get('name').setValue(this.depart.name);
-    this.departmentForm.get('description').setValue(this.depart.description);
+    this.providerForm.get('name').setValue(this.provider.name);
+    this.providerForm.get('description').setValue(this.provider.description);
   }
+
   onEdit(id:string){
-    if(this.departmentForm.valid){
-      const { name, description } = this.departmentForm.value;
+    if(this.providerForm.valid){
+      const { name, description } = this.providerForm.value;
       const reg = new RegExp('^\\s');
       if( reg.test(name) == true || reg.test(description) == true){
         this.messages.warning('Existen campos rellenados con espacios');
       }else{
-        const animalEdit = {
+        const provider = {
           name: name,
           description: description
         }
-        this.departmentsServices.editDepartmentFragment(id,animalEdit);
+        this.providersServices.editProviderFragment(id,provider);
       }
     }
   }
   isFieldValid1(field: string) {
-    const depart = this.departmentForm.get(field);
-    return (depart.touched || depart.dirty) && !depart.valid;
+    const prov = this.providerForm.get(field);
+    return (prov.touched || prov.dirty) && !prov.valid;
   }
   getErrorMessage1(field: string): string {
     let message;
-    const forms = this.departmentForm.get(field);
+    const forms = this.providerForm.get(field);
     if (forms.hasError('required')) {
       message = 'El campo es requerido.';
     }

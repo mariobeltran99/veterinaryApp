@@ -2,7 +2,7 @@
     <button
       mat-flat-button
       class="example-icon"
-      [routerLink]="['/admin/manage-providers']"
+      [routerLink]="['/admin/manage-products']"
     >
       <mat-icon>reply</mat-icon> Regresar
     </button>
@@ -11,18 +11,18 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 space">
         <mat-card>
-          <h1 class="title">Formulario de Proveedores</h1>
-          <form [formGroup]="providerForm">
+          <h1 class="title">Formulario de Categoría de Productos</h1>
+          <form [formGroup]="categoryProductForm">
             <mat-form-field appearance="outline" class="imp" nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="left">
               <mat-label>Nombre</mat-label>
               <input
                 type="text"
                 matInput
-                placeholder="Ej: Coca Cola"
+                placeholder="Ej: Alimentos"
                 formControlName="name"
                 autocomplete="off"
               />
-              <mat-icon matSuffix>local_shipping</mat-icon>
+              <mat-icon matSuffix>local_offer</mat-icon>
               <mat-error *ngIf="isFieldValid1('name')" class="error">{{
                 getErrorMessage1("name")
               }}</mat-error>
@@ -33,7 +33,7 @@
                 matInput
                 type="text"
                 autocomplete="off"
-                placeholder="Ej: Proveedor de bebidas"
+                placeholder="Ej: Comida para las mascotas"
                 formControlName="description"
               />
               <mat-icon matSuffix>featured_play_list</mat-icon>
@@ -47,7 +47,7 @@
               mat-raised-button
               color="primary"
               (click)="onSave()"
-              [disabled]="!providerForm.valid"
+              [disabled]="!categoryProductForm.valid"
             ><mat-icon class="ic">save</mat-icon>Guardar</button>
           </form>
         </mat-card>

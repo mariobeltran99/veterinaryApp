@@ -2,7 +2,7 @@
     <button
       mat-flat-button
       class="example-icon"
-      [routerLink]="['/admin/manage-products']"
+      [routerLink]="['/admin/manage-medicines']"
     >
       <mat-icon>reply</mat-icon> Regresar
     </button>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 space">
-            <nz-table #headerTable [nzData]="categoryProduct" [nzPageSize]="20" [nzScroll]="{ y: '540px' }">
+            <nz-table #headerTable [nzData]="categoryMedicine" [nzPageSize]="20" [nzScroll]="{ y: '540px' }">
                 <thead>
                   <tr>
                     <th nzAlign="center" nzWidth="200px">Nombre</th>
@@ -33,14 +33,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of headerTable.data | filterCategoryProducts:filter">
+                  <tr *ngFor="let data of headerTable.data | filterCategoryMedicines:filter">
                     <td>{{ data.name }}</td>
                     <td>{{ data.description }}</td>
                     <td>
                         <button mat-flat-button color="primary" (click)="showEditModal(data)"><mat-icon>create</mat-icon></button>
                     </td>
                     <td>
-                        <button mat-flat-button color="warn" (click)="deleteCategoryProduct(data.id)"><mat-icon>delete_outline</mat-icon></button>
+                        <button mat-flat-button color="warn" (click)="deleteCategoryMedicine(data.id)"><mat-icon>delete_outline</mat-icon></button>
                     </td>
                   </tr>
                 </tbody>

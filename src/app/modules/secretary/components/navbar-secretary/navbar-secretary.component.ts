@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { ModalSignoutComponent } from 'src/app/modules/core/components/modal-signout/modal-signout.component';
+import { Users } from 'src/app/modules/auth/interfaces/user';
 
 @Component({
   selector: 'app-navbar-secretary',
@@ -20,12 +21,30 @@ export class NavbarSecretaryComponent {
       shareReplay()
     );
 
+    displayName: string = null;
+    photoURL: string = null;
+
   constructor(private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
     private router: Router,
     private dialog: MatDialog,
     private route: ActivatedRoute
     ) {}
+
+    ngOnInit() {
+      this.loadSessionUser();
+    }
+    loadSessionUser() {
+      this.authServices.afAuth.currentUser.then((res) => {
+        this.authServices
+          .getExistsUserWithGoogle(res.uid)
+          .subscribe((respond) => {
+            const user = respond.docs[0].data() as Users;
+            this.photoURL = user.photoURL;
+            this.displayName = user.displayName;
+          });
+      });
+    }
     onSignOut() {
       const dialogRef = this.dialog.open(ModalSignoutComponent);
       dialogRef.afterClosed().subscribe((res) => {

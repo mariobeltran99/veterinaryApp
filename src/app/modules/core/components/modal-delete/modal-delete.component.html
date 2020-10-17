@@ -4,9 +4,6 @@
   <strong>Después esta acción no se puede revertir.</strong>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button [mat-dialog-close]="false">
-    <mat-icon class="ic">highlight_off</mat-icon>Cancelar
-  </button>
   <button
     mat-raised-button
     [mat-dialog-close]="true"
@@ -15,4 +12,10 @@
   >
     <mat-icon class="ic">delete_sweep</mat-icon>Eliminar
   </button>
+  <br>
+  <br><br>
+  <button mat-raised-button [mat-dialog-close]="false">
+    <mat-icon class="ic">highlight_off</mat-icon>Cancelar
+  </button>
+  
 </mat-dialog-actions>

@@ -10,6 +10,7 @@ import { ModalEditCategoryProductComponent } from '../../components/manage-produ
 import { AddProductComponent } from '../../components/manage-product/add-product/add-product.component';
 import { ViewProductsComponent } from '../../components/manage-product/view-products/view-products.component';
 import { ModalEditProductComponent } from '../../components/manage-product/modal-edit-product/modal-edit-product.component';
+import { ModalDetailProductComponent } from '../../components/manage-product/modal-detail-product/modal-detail-product.component';
 
 //--material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -19,16 +20,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatSelectModule } from '@angular/material/select';
 
 //--zorro imports
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 
 //--other imports
-import { ReactiveFormsModule } from '@angular/forms'
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 //--pipes imports
 import { FilterProductsPipe } from '../../pipes/filter-products.pipe';
@@ -41,8 +43,9 @@ const components = [
   ModalEditCategoryProductComponent,
   AddProductComponent,
   ViewProductsComponent,
-  ModalEditProductComponent
-]
+  ModalEditProductComponent,
+  ModalDetailProductComponent,
+];
 
 const materialComponents = [
   MatButtonModule,
@@ -51,27 +54,26 @@ const materialComponents = [
   MatIconModule,
   MatCardModule,
   MatDialogModule,
-  MatToolbarModule
-]
+  MatToolbarModule,
+  MatSelectModule,
+];
 
 const zorroComponents = [
   NzPopoverModule,
   NzMessageModule,
-  NzTableModule
-]
+  NzTableModule,
+  NzRateModule,
+];
 
 @NgModule({
-  declarations: [
-    ...components,
-    FilterCategoryProductsPipe,
-    FilterProductsPipe
-  ],
+  declarations: [...components, FilterCategoryProductsPipe, FilterProductsPipe],
   imports: [
     CommonModule,
     ManageProductRoutingModule,
     ...materialComponents,
     ...zorroComponents,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule
+  ],
 })
-export class ManageProductModule { }
+export class ManageProductModule {}

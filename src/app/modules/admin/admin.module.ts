@@ -28,6 +28,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
+
 const components = [
   ViewadminComponent,
   NavbarAdminComponent,

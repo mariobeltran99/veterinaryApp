@@ -1,1 +1,166 @@
-<p>add-product works!</p>
+<mat-toolbar>
+  <button
+    mat-flat-button
+    class="example-icon"
+    [routerLink]="['/admin/manage-products']"
+  >
+    <mat-icon>reply</mat-icon> Regresar
+  </button>
+</mat-toolbar>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 space">
+      <mat-card>
+        <h1 class="title">Formulario de Productos</h1>
+        <form [formGroup]="productForm">
+          <mat-form-field
+            appearance="outline"
+            class="imp"
+            nz-popover
+            nzPopoverTitle="Ayuda"
+            [nzPopoverContent]="contentTemplate"
+            nzPopoverPlacement="left"
+          >
+            <mat-label>Nombre</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: Correa"
+              formControlName="name"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>local_mall</mat-icon>
+            <mat-error *ngIf="isFieldValid1('name')" class="error">{{
+              getErrorMessage1("name")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Categoría del Producto</mat-label>
+            <mat-select formControlName="category">
+              <mat-option
+                *ngFor="let item of category"
+                value="{{ item.name }}"
+                >{{ item.name }}</mat-option
+              >
+            </mat-select>
+            <mat-icon matSuffix>local_offer</mat-icon>
+            <mat-error *ngIf="isFieldValid1('category')" class="error">{{
+              getErrorMessage1("category")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Proveedor del Producto</mat-label>
+            <mat-select formControlName="provider">
+              <mat-option
+                *ngFor="let item of provider"
+                value="{{ item.name }}"
+                >{{ item.name }}</mat-option
+              >
+            </mat-select>
+            <mat-icon matSuffix>local_shipping</mat-icon>
+            <mat-error *ngIf="isFieldValid1('provider')" class="error">{{
+              getErrorMessage1("provider")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Existencias</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Ej: 50"
+              formControlName="existence"
+              step="1"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>filter_frames</mat-icon>
+            <mat-error *ngIf="isFieldValid1('existence')" class="error">{{
+              getErrorMessage1("existence")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Precio</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Ej: 50.50"
+              formControlName="price"
+              step="1.50"
+              autocomplete="off"
+            />
+            <span matPrefix>$&nbsp;</span>
+            <mat-icon matSuffix>monetization_on</mat-icon>
+            <mat-error *ngIf="isFieldValid1('price')" class="error">{{
+              getErrorMessage1("price")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field
+            appearance="outline"
+            class="imp"
+            nz-popover
+            nzPopoverTitle="Ayuda"
+            [nzPopoverContent]="contentT"
+            nzPopoverPlacement="right"
+          >
+            <mat-label>Descripción (Opcional)</mat-label>
+            <textarea
+              class="boxarea"
+              matInput
+              placeholder="Escriba su descripción"
+              formControlName="description"
+              autocomplete="off"
+              maxlength="600"
+              #met
+            ></textarea>
+            <mat-icon matSuffix>featured_play_list</mat-icon>
+            <mat-hint align="end">{{ met.value.length || 0 }}/600</mat-hint>
+          </mat-form-field>
+          <div class="container-input-file">
+            <label class="custom-file" mat-flat-buttom>
+              <mat-icon class="is">cloud_upload</mat-icon
+              ><span class="ind">Seleccione una Imagen (.png o .jpg)</span>
+              <input
+                type="file"
+                accept=".jpg,.png"
+                formControlName="photo"
+                class="ix"
+                (change)="handleImage($event)"
+              />
+            </label>
+          </div>
+          <mat-form-field appearance="outline" class="imp" [hidden]="true">
+            <mat-label>Precio</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: 50.50"
+              formControlName="namePhoto"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="isFieldValid1('namePhoto')" class="error">{{
+              getErrorMessage1("namePhoto")
+            }}</mat-error>
+          </mat-form-field>
+          <br />
+          <br />
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSave()"
+            [disabled]="!productForm.valid"
+          >
+            <mat-icon class="ic">save</mat-icon>Guardar
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<ng-template #contentTemplate>
+  <p>Empieza aquí para llenar el formulario</p>
+</ng-template>
+<ng-template #contentT>
+  <p>
+    Este campo es opcional pero es recomendable que coloque una descripción de
+    ese producto.
+  </p>
+</ng-template>

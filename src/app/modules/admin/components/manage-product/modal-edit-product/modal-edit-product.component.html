@@ -1,1 +1,169 @@
-<p>modal-edit-product works!</p>
+<h2 mat-dialog-title>Editar Producto</h2>
+<mat-dialog-content>
+  <h3>Formulario</h3>
+  <br />
+  <form [formGroup]="productForm">
+    <mat-form-field
+      appearance="outline"
+      class="imp"
+      nz-popover
+      nzPopoverTitle="Ayuda"
+      [nzPopoverContent]="contentTemplate"
+      nzPopoverPlacement="left"
+    >
+      <mat-label>Nombre</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ej: Alimento"
+        formControlName="name"
+        autocomplete="off"
+      />
+      <mat-icon matSuffix>local_offer</mat-icon>
+      <mat-error *ngIf="isFieldValid1('name')" class="error">{{
+        getErrorMessage1("name")
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="imp">
+      <mat-label>Categoría del Producto</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let item of category" value="{{ item.name }}">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>local_offer</mat-icon>
+      <mat-error *ngIf="isFieldValid1('category')" class="error">{{
+        getErrorMessage1("category")
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="imp">
+      <mat-label>Proveedor del Producto</mat-label>
+      <mat-select formControlName="provider">
+        <mat-option *ngFor="let item of provider" value="{{ item.name }}">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>local_shipping</mat-icon>
+      <mat-error *ngIf="isFieldValid1('provider')" class="error">{{
+        getErrorMessage1("provider")
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="imp">
+      <mat-label>Existencias</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Ej: 50"
+        formControlName="existence"
+        step="1"
+        autocomplete="off"
+      />
+      <mat-icon matSuffix>filter_frames</mat-icon>
+      <mat-error *ngIf="isFieldValid1('existence')" class="error">{{
+        getErrorMessage1("existence")
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="imp">
+      <mat-label>Precio</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Ej: 50.50"
+        formControlName="price"
+        step="1.50"
+        autocomplete="off"
+      />
+      <span matPrefix>$&nbsp;</span>
+      <mat-icon matSuffix>monetization_on</mat-icon>
+      <mat-error *ngIf="isFieldValid1('price')" class="error">{{
+        getErrorMessage1("price")
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field
+      appearance="outline"
+      class="imp"
+      nz-popover
+      nzPopoverTitle="Ayuda"
+      [nzPopoverContent]="contentT"
+      nzPopoverPlacement="right"
+    >
+      <mat-label>Descripción (Opcional)</mat-label>
+      <textarea
+        class="boxarea"
+        matInput
+        placeholder="Escriba su descripción"
+        formControlName="description"
+        autocomplete="off"
+        maxlength="600"
+        #met
+      ></textarea>
+      <mat-icon matSuffix>featured_play_list</mat-icon>
+      <mat-hint align="end">{{ met.value.length || 0 }}/600</mat-hint>
+    </mat-form-field>
+    <h3 class="title">Imagen Actual del Producto</h3>
+    <br>
+    <img src="{{product.photo}}" class="imgP img-fluid">
+    <br>
+    <br>
+    <div
+      class="container-input-file"
+      nz-popover
+      nzPopoverTitle="Ayuda"
+      [nzPopoverContent]="cont"
+      nzPopoverPlacement="right"
+    >
+      <label class="custom-file" mat-flat-buttom>
+        <mat-icon class="is">cloud_upload</mat-icon
+        ><span class="ind">Seleccione una Imagen (.png o .jpg)</span>
+        <input
+          type="file"
+          accept=".jpg,.png"
+          formControlName="photo"
+          class="ix"
+          (change)="handleImage($event)"
+        />
+      </label>
+    </div>
+    <mat-form-field appearance="outline" class="imp" [hidden]="true">
+      <mat-label>Precio</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ej: 50.50"
+        formControlName="namePhoto"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <br />
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onEdit(product.id)"
+      [disabled]="!productForm.valid"
+      [mat-dialog-close]="true"
+    >
+      <mat-icon class="ic">create</mat-icon>Editar
+    </button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="false">
+    <mat-icon class="ic">highlight_off</mat-icon>Cancelar
+  </button>
+</mat-dialog-actions>
+<ng-template #contentTemplate>
+  <p>Empieza aquí para llenar el formulario</p>
+</ng-template>
+<ng-template #contentT>
+  <p>
+    Este campo es opcional pero es recomendable que coloque una descripción de
+    ese producto
+  </p>
+</ng-template>
+<ng-template #cont>
+  <p>
+    Este campo es opcional, pero puede colocar una imágen mejor a la anterior de
+    ese producto
+  </p>
+</ng-template>

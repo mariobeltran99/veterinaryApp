@@ -6,6 +6,10 @@ import { SecretaryRoutingModule } from './secretary-routing.module';
 //--components imports
 import { ViewsecretaryComponent } from './components/viewsecretary/viewsecretary.component';
 import { NavbarSecretaryComponent } from './components/navbar-secretary/navbar-secretary.component';
+import { SecretaryHomeComponent } from './components/secretary-home/secretary-home.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
+import { ViewProductsComponent } from './components/view-products/view-products.component';
 
 //--icons imports
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,9 +30,14 @@ import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 const components = [
   ViewsecretaryComponent,
-  NavbarSecretaryComponent
+  NavbarSecretaryComponent,
+  ReportsComponent,
+  ViewProductsComponent,
+  ReservationsComponent,
+  SecretaryHomeComponent
 ]
 
 const materialComponents = [

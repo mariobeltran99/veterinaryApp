@@ -41,5 +41,17 @@ export class NavbarSecretaryComponent {
       } catch (ex) {
         console.error(ex);
       }
-    } 
+    }
+    showSecretaryHome() {
+      this.router.navigate(['secretary-home'], { relativeTo: this.route });
+    }
+    showReports() {
+      this.router.navigate(['reports'], { relativeTo: this.route });
+    }
+    showReservations() {
+      this.router.navigate(['reservations'], { relativeTo: this.route });
+    }
+    showViewProducts() {
+      this.router.navigate(['view-products'], { relativeTo: this.route });
+    }
 }

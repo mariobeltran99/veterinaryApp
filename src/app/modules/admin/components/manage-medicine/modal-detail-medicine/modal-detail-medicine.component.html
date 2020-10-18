@@ -1,22 +1,21 @@
-
-<h2 mat-dialog-title>Producto</h2>
+<h2 mat-dialog-title>Medicamento</h2>
 <mat-dialog-content>
-  <h3>Nombre: {{product.name}}</h3>
-  <h3>Categoría: {{product.category}}</h3>
-  <h3>Proveedor: {{product.provider}}</h3>
-  <h3>Existencias: {{product.existence}}</h3>
-  <h3>Estado de Venta: {{loadExistence(product.existence)}}</h3>
-  <h3>Precio: {{product.price | currency}}</h3>
+  <h3>Nombre: {{medicine.name}}</h3>
+  <h3>Categoría: {{medicine.category}}</h3>
+  <h3>Proveedor: {{medicine.provider}}</h3>
+  <h3>Existencias: {{medicine.existence}}</h3>
+  <h3>Estado de Venta: {{loadExistence(medicine.existence)}}</h3>
+  <h3>Precio: {{medicine.price | currency}}</h3>
   <h3>Valoración:
     <form [formGroup]="rateForm">
       <nz-rate formControlName="rate" [nzTooltips]="tooltips" nzDisabled></nz-rate>
     </form>
     <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : 'Sin Clasificación' }}</span></h3>
   <h3>Descripción: </h3>
-  <h3>{{loadDescription(product.description)}}</h3>
-  <h3>Foto del Producto: </h3>
+  <h3>{{loadDescription(medicine.description)}}</h3>
+  <h3>Foto del Medicamento: </h3>
   <br>
-  <img src="{{product.photo}}" class="imgP img-fluid">
+  <img src="{{medicine.photo}}" class="imgP img-fluid">
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button

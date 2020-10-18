@@ -30,7 +30,6 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 
 //--other imports
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 
 //--pipes imports
 import { FilterProductsPipe } from '../../pipes/filter-products.pipe';
@@ -72,8 +71,7 @@ const zorroComponents = [
     ManageProductRoutingModule,
     ...materialComponents,
     ...zorroComponents,
-    ReactiveFormsModule,
-    FormsModule
+    ReactiveFormsModule
   ],
 })
 export class ManageProductModule {}

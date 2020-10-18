@@ -1,0 +1,53 @@
+.mat-toolbar {
+  padding: 10px;
+}
+.space {
+  margin-top: 30px;
+}
+.imp {
+  width: 100%;
+}
+.title {
+  text-align: center;
+}
+.ic {
+  margin-right: 10px;
+}
+.mat-raised-button {
+  width: 100%;
+}
+textarea {
+  resize: none;
+  overflow: scroll;
+}
+.boxarea {
+  resize: none;
+}
+.container-input-file {
+  border: 1px solid #ccc;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #3f51b5;
+  color: white;
+  padding-bottom: 3px;
+}
+.ix {
+  display: none;
+}
+.ind {
+  margin-top: 10px;
+  cursor: pointer;
+}
+.is {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.imgP {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  display: block;
+}

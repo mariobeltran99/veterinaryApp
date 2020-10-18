@@ -10,6 +10,7 @@ import { ViewMedicinesComponent } from '../../components/manage-medicine/view-me
 import { ViewCategoryMedicinesComponent } from '../../components/manage-medicine/view-category-medicines/view-category-medicines.component';
 import { ModalEditCategoryMedicinesComponent } from '../../components/manage-medicine/modal-edit-category-medicines/modal-edit-category-medicines.component';
 import { ModalEditMedicinesComponent } from '../../components/manage-medicine/modal-edit-medicines/modal-edit-medicines.component';
+import { ModalDetailMedicineComponent } from '../../components/manage-medicine/modal-detail-medicine/modal-detail-medicine.component';
 
 //--material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -19,15 +20,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 
 
 //--zorro imports
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 
 //--other imports
 import { ReactiveFormsModule } from '@angular/forms'
+
 
 //--pipes imports
 import { FilterCategoryMedicinesPipe } from '../../pipes/filter-category-medicines.pipe';
@@ -40,7 +44,8 @@ const components = [
   ViewMedicinesComponent,
   ViewCategoryMedicinesComponent,
   ModalEditMedicinesComponent,
-  ModalEditCategoryMedicinesComponent
+  ModalEditCategoryMedicinesComponent,
+  ModalDetailMedicineComponent
 ]
 
 const materialComponents = [
@@ -50,13 +55,15 @@ const materialComponents = [
   MatIconModule,
   MatCardModule,
   MatDialogModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSelectModule
 ]
 
 const zorroComponents = [
   NzPopoverModule,
   NzMessageModule,
-  NzTableModule
+  NzTableModule,
+  NzRateModule
 ]
 
 @NgModule({
@@ -70,7 +77,7 @@ const zorroComponents = [
     ManageMedicineRoutingModule,
     ...materialComponents,
     ...zorroComponents,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class ManageMedicineModule { }

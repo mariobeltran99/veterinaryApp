@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ViewProducts } from '../../../interfaces/view-products';
+import { ViewMedicines } from '../../../interfaces/view-medicines';
 
 @Component({
-  selector: 'app-modal-detail-product',
-  templateUrl: './modal-detail-product.component.html',
-  styleUrls: ['./modal-detail-product.component.css']
+  selector: 'app-modal-detail-medicine',
+  templateUrl: './modal-detail-medicine.component.html',
+  styleUrls: ['./modal-detail-medicine.component.css']
 })
-export class ModalDetailProductComponent implements OnInit {
+export class ModalDetailMedicineComponent implements OnInit {
 
-  product:ViewProducts = null;
-  tooltips = ['terrible', 'malo', 'normal', 'bueno', 'maravilloso'];
+  medicine:ViewMedicines = null;
   rateForm:FormGroup;
+  tooltips = ['terrible', 'malo', 'normal', 'bueno', 'maravilloso'];
   value:number = 0;
   constructor(private fb:FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.rateForm = this.fb.group({
       rate: new FormControl(null)
     });
-    this.loadQualification(this.product.qualification,this.product.sales_quantity);
+    this.loadQualification(this.medicine.qualification,this.medicine.sales_quantity);
     this.rateForm.get('rate').setValue(this.value);
   }
   loadQualification(qualification:number,quantity:number){

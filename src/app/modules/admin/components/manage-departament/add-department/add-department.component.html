@@ -1,0 +1,59 @@
+<mat-toolbar>
+    <button
+      mat-flat-button
+      class="example-icon"
+      [routerLink]="['/admin/manage-departments']"
+    >
+      <mat-icon>reply</mat-icon> Regresar
+    </button>
+  </mat-toolbar>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 space">
+        <mat-card>
+          <h1 class="title">Formulario de Departamentos</h1>
+          <form [formGroup]="departmentForm">
+            <mat-form-field appearance="outline" class="imp" nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="left">
+              <mat-label>Nombre</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Ej: Cirujía"
+                formControlName="name"
+                autocomplete="off"
+              />
+              <mat-icon matSuffix>layers</mat-icon>
+              <mat-error *ngIf="isFieldValid1('name')" class="error">{{
+                getErrorMessage1("name")
+              }}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="imp">
+              <mat-label>Descripción</mat-label>
+              <input
+                matInput
+                type="text"
+                autocomplete="off"
+                placeholder="Ej: Sitio para operaciones de los animales"
+                formControlName="description"
+              />
+              <mat-icon matSuffix>featured_play_list</mat-icon>
+              <mat-error *ngIf="isFieldValid1('description')">{{
+                getErrorMessage1("description")
+              }}</mat-error>
+            </mat-form-field>
+            <br />
+            <br />
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onSave()"
+              [disabled]="!departmentForm.valid"
+            ><mat-icon class="ic">save</mat-icon>Guardar</button>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+<ng-template #contentTemplate>
+    <p>Empieza aquí para llenar el formulario</p>
+</ng-template>

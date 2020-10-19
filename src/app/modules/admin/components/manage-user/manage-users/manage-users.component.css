@@ -1,0 +1,14 @@
+.space{
+    margin-top: 30px;
+}
+.imgPortada{
+    height: 300px;
+    overflow: hidden;
+}
+.mat-flat-button{
+    width: 100%;
+}
+.alert{
+    text-align: justify;
+    font-size: 1em;
+}

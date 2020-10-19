@@ -6,6 +6,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalSignoutComponent } from '../../../core/components/modal-signout/modal-signout.component';
+import { Users } from 'src/app/modules/auth/interfaces/user';
 @Component({
   selector: 'app-navbar-client',
   templateUrl: './navbar-client.component.html',
@@ -19,7 +20,9 @@ export class NavbarClientComponent implements OnInit {
       map((result) => result.matches),
       shareReplay()
     );
-  public user$: Observable<any> = this.authServices.afAuth.user;
+
+  displayName: string = null;
+  photoURL: string = null;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
@@ -27,12 +30,25 @@ export class NavbarClientComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadSessionUser();
+  }
+  loadSessionUser() {
+    this.authServices.afAuth.currentUser.then((res) => {
+      this.authServices
+        .getExistsUserWithGoogle(res.uid)
+        .subscribe((respond) => {
+          const user = respond.docs[0].data() as Users;
+          this.photoURL = user.photoURL;
+          this.displayName = user.displayName;
+        });
+    });
+  }
   //function the logout
   onSignOut() {
     const dialogRef = this.dialog.open(ModalSignoutComponent);
-    dialogRef.afterClosed().subscribe((res)=>{
-      if(res){
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
         this.onLogout();
       }
     });
@@ -46,4 +62,5 @@ export class NavbarClientComponent implements OnInit {
       console.error(ex);
     }
   }
+  showManageProfile() {}
 }

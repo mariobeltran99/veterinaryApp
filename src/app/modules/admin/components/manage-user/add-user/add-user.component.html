@@ -1,0 +1,194 @@
+<mat-toolbar>
+  <button
+    mat-flat-button
+    class="example-icon"
+    [routerLink]="['/login']"
+  >
+    <mat-icon>reply</mat-icon> Regresar
+  </button>
+</mat-toolbar>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 space">
+      <mat-card>
+        <h1 class="title">Formulario de Usuarios</h1>
+        <form [formGroup]="roleForm">
+          <mat-form-field
+            appearance="outline"
+            class="imp"
+            nz-popover
+            nzPopoverTitle="Ayuda"
+            [nzPopoverContent]="contentTemplate"
+            nzPopoverPlacement="left"
+          >
+            <mat-label>Seleccionar el Rol de Usuario</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="Administrador">Administrador</mat-option>
+              <mat-option value="Bodeguero">Bodeguero</mat-option>
+              <mat-option value="Secretaria">Secretaria</mat-option>
+              <mat-option value="Veterinario">Veterinario</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>supervisor_account</mat-icon>
+            <mat-error *ngIf="isFieldValid('role')" class="error">{{
+              getErrorMessage("role")
+            }}</mat-error>
+          </mat-form-field>
+        </form>
+        <form [formGroup]="userForm">
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Nombre</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: Josué"
+              formControlName="name"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>contacts</mat-icon>
+            <mat-error *ngIf="isFieldValid1('name')" class="error">{{
+              getErrorMessage1("name")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Apellido</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: Gómez"
+              formControlName="lastname"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>contacts</mat-icon>
+            <mat-error *ngIf="isFieldValid1('lastname')" class="error">{{
+              getErrorMessage1("lastname")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field
+            appearance="outline"
+            class="imp"
+            nz-popover
+            nzPopoverTitle="Ayuda"
+            [nzPopoverContent]="content"
+            nzPopoverPlacement="left"
+          >
+            <mat-label>DUI</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: 74551595-5"
+              formControlName="dui"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>contact_mail</mat-icon>
+            <mat-error *ngIf="isFieldValid1('dui')" class="error">{{
+              getErrorMessage1("dui")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="imp">
+            <mat-label>Edad</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Ej: 34"
+              formControlName="age"
+              step="1"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>av_timer</mat-icon>
+            <mat-error *ngIf="isFieldValid1('age')" class="error">{{
+              getErrorMessage1("age")
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field
+            appearance="outline"
+            class="imp"
+            nz-popover
+            nzPopoverTitle="Ayuda"
+            [nzPopoverContent]="cont"
+            nzPopoverPlacement="left"
+          >
+            <mat-label>Correo Electrónico</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Ej: juan@gmail.com"
+              formControlName="email"
+              autocomplete="off"
+            />
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <mat-error *ngIf="isFieldValid1('email')" class="error">{{
+              getErrorMessage1("email")
+            }}</mat-error>
+          </mat-form-field>
+          <br />
+          <br />
+          <strong
+            >Tomar en cuenta la contraseña por defecto al crear el usuario es:
+            P@ssw0rd
+          </strong>
+          <br />
+          <br />
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSave()"
+            [disabled]="!roleForm.valid || !userForm.valid"
+            *ngIf="role != 'Veterinario'; else normal"
+          >
+            <mat-icon class="ic">save</mat-icon>Guardar
+          </button>
+        </form>
+        <ng-template #normal>
+          <h3>Datos del Veterinario</h3>
+          <form [formGroup]="vetForm">
+            <mat-form-field appearance="outline" class="imp">
+              <mat-label>Especialidad del Veterinario</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Ej: Veterinario General"
+                formControlName="specialty"
+                autocomplete="off"
+              />
+              <mat-icon matSuffix>list_alt</mat-icon>
+              <mat-error *ngIf="isFieldValid2('specialty')" class="error">{{
+                getErrorMessage2("specialty")
+              }}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="imp">
+              <mat-label>Departamento de la Veterinaria</mat-label>
+              <mat-select formControlName="department">
+                <mat-option
+                  *ngFor="let item of department"
+                  value="{{ item.name }}"
+                  >{{ item.name }}</mat-option
+                >
+              </mat-select>
+              <mat-icon matSuffix>business</mat-icon>
+              <mat-error *ngIf="isFieldValid2('department')" class="error">{{
+                getErrorMessage2("department")
+              }}</mat-error>
+            </mat-form-field>
+          </form>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSave()"
+            [disabled]="!roleForm.valid || !userForm.valid || !vetForm.valid"
+          >
+            <mat-icon class="ic">save</mat-icon>Guardar
+          </button>
+        </ng-template>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<ng-template #contentTemplate>
+  <p>Empieza aquí para llenar el formulario</p>
+</ng-template>
+<ng-template #content>
+  <p>Este campo debe ser único y no se podrá hacer cambios más adelante</p>
+</ng-template>
+<ng-template #cont>
+  <p>Este campo debe ser único y no se podrá hacer cambios más adelante</p>
+</ng-template>

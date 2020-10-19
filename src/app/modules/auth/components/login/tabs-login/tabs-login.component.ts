@@ -33,8 +33,10 @@ export class TabsLoginComponent implements OnInit {
   hide1 = true;
   hide2 = true;
   hide3 = true;
+  hide4 = true;
   loginForm: FormGroup;
   registerForm: FormGroup;
+  newEmployeeForm:FormGroup;
   constructor(
     private fb: FormBuilder,
     private authServices: AuthService,
@@ -94,6 +96,9 @@ export class TabsLoginComponent implements OnInit {
       ]),
       passwordConfirm: new FormControl(null, [Validators.required]),
     });
+    this.newEmployeeForm = this.fb.group({
+      pass: new FormControl(null,[Validators.required])
+    })
   }
 
   //validation with dirty and touched
@@ -103,6 +108,10 @@ export class TabsLoginComponent implements OnInit {
   }
   isFieldValid2(field: string) {
     const register = this.registerForm.get(field);
+    return (register.touched || register.dirty) && !register.valid;
+  }
+  isFieldValid3(field: string) {
+    const register = this.newEmployeeForm.get(field);
     return (register.touched || register.dirty) && !register.valid;
   }
   //get message errors
@@ -175,6 +184,14 @@ export class TabsLoginComponent implements OnInit {
           message = 'La edad máxima es 90 años';
         }
         break;
+    }
+    return message;
+  }
+  getErrorMessage3(field: string): string {
+    let message;
+    const forms = this.newEmployeeForm.get(field);
+    if (forms.hasError('required')) {
+      message = 'El campo es requerido.';
     }
     return message;
   }
@@ -324,12 +341,26 @@ export class TabsLoginComponent implements OnInit {
         );
       }
     } else {
-      console.log('est');
       this.createNotification(
         'error',
         'Error al registrarse',
         'Compruebe su conexión con internet'
       );
+    }
+  }
+  onValidate(){
+    if(this.newEmployeeForm.valid){
+      const password = 'P@ssw0rd';
+      const { pass } = this.newEmployeeForm.value;
+      if(password === pass){
+        this.router.navigate(['add-employee/add-user']);
+      }else{
+        this.createNotification(
+          'error',
+          'Error al ingresar a la página',
+          'Escriba nuevamente la constraseña'
+        );
+      }
     }
   }
   resetRegisterForm() {

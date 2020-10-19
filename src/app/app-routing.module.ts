@@ -6,6 +6,7 @@ import { CanClientGuard } from './modules/auth/guards/can-client.guard';
 import { CanGrocerGuard } from './modules/auth/guards/can-grocer.guard';
 import { CanVeterinarianGuard } from './modules/auth/guards/can-veterinarian.guard';
 import { CanSecretaryGuard } from './modules/auth/guards/can-secretary.guard';
+import { AddUserComponent } from './modules/admin/components/manage-user/add-user/add-user.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
     path: 'steps-register',
     loadChildren: () => import('./modules/auth/models/step-initial.module').then(m => m.StepInitialModule),
     canActivate: [CanClientGuard],
+  },
+  {
+    path: 'add-employee',
+    loadChildren: () => import('./modules/admin/models/manage-user/manage-user.module').then(m => m.ManageUserModule),
   },
   {
     path: '**',

@@ -1,0 +1,25 @@
+
+<h2 mat-dialog-title>Cuenta de Usuario</h2>
+<mat-dialog-content>
+  <h3>Nombre: {{user.name}}</h3>
+  <h3>Apellido: {{user.lastname}}</h3>
+  <h3>Nombre Completo: {{ user.displayName}}</h3>
+  <h3>DUI: {{user.dui}}</h3>
+  <h3>Edad: {{user.age}}</h3>
+  <h3>Correo Electrónico: {{user.email}}</h3>
+  <h3>Rol del Usuario: {{user.role}}</h3>
+  <h3>Estado de la Cuenta: {{user.disabled === false ? 'Habilitada':'Inhabilitada'}}</h3>
+  <h3>Foto del Usuario: </h3>
+  <br>
+  <img src="{{user.photoURL == null ? '../../../../../assets/img/profile.png': user.photoURL}}" class="imgP img-fluid">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    [mat-dialog-close]="true"
+    color="primary"
+    cdkFocusInitial
+  >
+    <mat-icon class="ic">highlight_off</mat-icon>Cerrar
+  </button>
+</mat-dialog-actions>

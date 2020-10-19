@@ -1,3 +1,4 @@
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,19 +13,25 @@ import { ModalEditMedicinesComponent } from '../modal-edit-medicines/modal-edit-
 @Component({
   selector: 'app-view-medicines',
   templateUrl: './view-medicines.component.html',
-  styleUrls: ['./view-medicines.component.css']
+  styleUrls: ['./view-medicines.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class ViewMedicinesComponent implements OnInit {
 
   searchForm: FormGroup;
   medicine: ViewMedicines[] = [];
   filter: string = '';
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
     private medicineServices: MedicinesService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    location: Location
+  ) { this.location = location; }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -119,4 +126,7 @@ export class ViewMedicinesComponent implements OnInit {
     }
     return result;
   }
+  backView() {
+    this.location.back();
+   }
 }

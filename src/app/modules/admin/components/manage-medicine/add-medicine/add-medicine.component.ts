@@ -1,3 +1,4 @@
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -11,7 +12,11 @@ import { ProvidersService } from '../../../services/providers.service';
 @Component({
   selector: 'app-add-medicine',
   templateUrl: './add-medicine.component.html',
-  styleUrls: ['./add-medicine.component.css']
+  styleUrls: ['./add-medicine.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class AddMedicineComponent implements OnInit {
 
@@ -19,13 +24,15 @@ export class AddMedicineComponent implements OnInit {
   category: ViewCategoryMedicine[] = [];
   provider: ViewProviders[] = [];
   image: any;
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
     private medicineServices: MedicinesService,
     private categoryMedicineServices: CategoryMedicineService,
-    private providerServices: ProvidersService
-  ) { }
+    private providerServices: ProvidersService,
+    location: Location
+  ) {  this.location = location;}
 
   ngOnInit(): void {
     this.medicineForm = this.fb.group({
@@ -170,4 +177,7 @@ export class AddMedicineComponent implements OnInit {
       }
     }
   }
+  backView() {
+    this.location.back();
+   }
 }

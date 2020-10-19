@@ -218,10 +218,10 @@ export class TabsLoginComponent implements OnInit {
                       this.router.navigate(['/client']);
                       break;
                     case 'Administrador':
-                      this.router.navigate(['/admin/manage-home']);
+                      this.router.navigate(['/admin/manage-users']);
                       break;
                     case 'Bodeguero':
-                      this.router.navigate(['/grocer']);
+                      this.router.navigate(['/grocer/manage-providers']);
                       break;
                     case 'Veterinario':
                       this.router.navigate(['/veterinarian']);

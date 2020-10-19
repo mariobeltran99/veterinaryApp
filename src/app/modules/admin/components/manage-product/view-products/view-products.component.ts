@@ -1,3 +1,4 @@
+import { Location,LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,17 +14,23 @@ import { ModalEditProductComponent } from '../modal-edit-product/modal-edit-prod
   selector: 'app-view-products',
   templateUrl: './view-products.component.html',
   styleUrls: ['./view-products.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class ViewProductsComponent implements OnInit {
   searchForm: FormGroup;
   product: ViewProducts[] = [];
   filter: string = '';
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
     private productServices: ProductsService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    location: Location
+  ) { this.location = location; }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -118,4 +125,7 @@ export class ViewProductsComponent implements OnInit {
     }
     return result;
   }
+  backView() {
+    this.location.back();
+   }
 }

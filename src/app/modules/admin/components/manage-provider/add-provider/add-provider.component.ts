@@ -1,3 +1,4 @@
+import { Location,LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -6,16 +7,22 @@ import { ProvidersService } from '../../../services/providers.service';
 @Component({
   selector: 'app-add-provider',
   templateUrl: './add-provider.component.html',
-  styleUrls: ['./add-provider.component.css']
+  styleUrls: ['./add-provider.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class AddProviderComponent implements OnInit {
 
   providerForm:FormGroup;
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
-    private providerServices: ProvidersService
-  ) { }
+    private providerServices: ProvidersService,
+    location: Location
+  ) { this.location = location; }
 
   ngOnInit() {
     this.providerForm = this.fb.group({
@@ -92,4 +99,7 @@ export class AddProviderComponent implements OnInit {
       prov.controls[key].setErrors(null);
     });
   }
+  backView() {
+    this.location.back();
+   }
 }

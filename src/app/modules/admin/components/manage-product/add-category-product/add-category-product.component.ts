@@ -1,23 +1,40 @@
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { CategoryProductService } from '../../../services/category-product.service';
 
 @Component({
   selector: 'app-add-category-product',
   templateUrl: './add-category-product.component.html',
-  styleUrls: ['./add-category-product.component.css']
+  styleUrls: ['./add-category-product.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class AddCategoryProductComponent implements OnInit {
-
-  categoryProductForm:FormGroup;
+  location: Location;
+  categoryProductForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
-    private categoryProductServices: CategoryProductService
-  ) { }
+    private categoryProductServices: CategoryProductService,
+    location: Location
+  ) {
+    this.location = location;
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.categoryProductForm = this.fb.group({
       name: new FormControl(null, [
         Validators.required,
@@ -64,7 +81,7 @@ export class AddCategoryProductComponent implements OnInit {
     }
     return message;
   }
-  onSave(){
+  onSave() {
     if (this.categoryProductForm.valid) {
       const { name, description } = this.categoryProductForm.value;
       const reg = new RegExp('^\\s');
@@ -75,13 +92,16 @@ export class AddCategoryProductComponent implements OnInit {
           name: name,
           description: description,
         };
-        this.categoryProductServices.saveCategoryProduct(category).then(res => {
-          this.messages.success('Se guardaron los datos exitosamente');
-          this.resetForm();
-          this.categoryProductForm.get('name').setValue('');
-        }).catch(ex => {
-          this.messages.error('Se produjo un problema con la petición');
-        })
+        this.categoryProductServices
+          .saveCategoryProduct(category)
+          .then((res) => {
+            this.messages.success('Se guardaron los datos exitosamente');
+            this.resetForm();
+            this.categoryProductForm.get('name').setValue('');
+          })
+          .catch((ex) => {
+            this.messages.error('Se produjo un problema con la petición');
+          });
       }
     }
   }
@@ -91,5 +111,8 @@ export class AddCategoryProductComponent implements OnInit {
     Object.keys(category.controls).forEach((key) => {
       category.controls[key].setErrors(null);
     });
+  }
+  backView() {
+    this.location.back();
   }
 }

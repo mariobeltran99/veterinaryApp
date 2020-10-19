@@ -61,9 +61,6 @@ export class NavbarAdminComponent implements OnInit {
     }
   }
 
-  showManageHome() {
-    this.router.navigate(['manage-home'], { relativeTo: this.route });
-  }
   showManageUser() {
     this.router.navigate(['manage-users'], { relativeTo: this.route });
   }

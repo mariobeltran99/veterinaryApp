@@ -1,3 +1,4 @@
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,19 +11,25 @@ import { ModalEditProviderComponent } from '../modal-edit-provider/modal-edit-pr
 @Component({
   selector: 'app-view-providers',
   templateUrl: './view-providers.component.html',
-  styleUrls: ['./view-providers.component.css']
+  styleUrls: ['./view-providers.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class ViewProvidersComponent implements OnInit {
 
   searchForm:FormGroup;
   providers:ViewProviders[] = [];
   filter:string = '';
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
     private providersServices:ProvidersService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    location: Location
+  ) { this.location = location;}
 
   ngOnInit(){
     this.searchForm = this.fb.group({
@@ -79,4 +86,7 @@ export class ViewProvidersComponent implements OnInit {
     });
   }
 
+  backView() {
+    this.location.back();
+  }
 }

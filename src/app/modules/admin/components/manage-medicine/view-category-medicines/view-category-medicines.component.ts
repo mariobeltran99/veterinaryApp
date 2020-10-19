@@ -1,3 +1,8 @@
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,19 +15,26 @@ import { ModalEditCategoryMedicinesComponent } from '../modal-edit-category-medi
 @Component({
   selector: 'app-view-category-medicines',
   templateUrl: './view-category-medicines.component.html',
-  styleUrls: ['./view-category-medicines.component.css']
+  styleUrls: ['./view-category-medicines.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class ViewCategoryMedicinesComponent implements OnInit {
-
-  searchForm:FormGroup;
-  categoryMedicine:ViewCategoryMedicine[] = [];
-  filter:string = '';
+  searchForm: FormGroup;
+  categoryMedicine: ViewCategoryMedicine[] = [];
+  filter: string = '';
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
-    private categoryMedicineServices:CategoryMedicineService,
-    private dialog: MatDialog
-  ) { }
+    private categoryMedicineServices: CategoryMedicineService,
+    private dialog: MatDialog,
+    location: Location
+  ) {
+    this.location = location;
+  }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -33,7 +45,7 @@ export class ViewCategoryMedicinesComponent implements OnInit {
     });
     this.loadCategoryMedicines();
   }
-  loadCategoryMedicines(){
+  loadCategoryMedicines() {
     this.categoryMedicineServices.getCategoryMedicine().subscribe((respond) => {
       this.categoryMedicine = [];
       respond.docs.forEach((value) => {
@@ -54,7 +66,7 @@ export class ViewCategoryMedicinesComponent implements OnInit {
       if (res) {
         this.messages.success('El registro se ha modificado correctamente');
         this.loadCategoryMedicines();
-      }else{
+      } else {
         this.messages.info('Se canceló la modificación del registro');
       }
     });
@@ -78,5 +90,7 @@ export class ViewCategoryMedicinesComponent implements OnInit {
       }
     });
   }
-
+  backView() {
+    this.location.back();
+  }
 }

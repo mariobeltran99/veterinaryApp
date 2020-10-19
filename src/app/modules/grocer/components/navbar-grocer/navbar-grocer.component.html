@@ -5,14 +5,27 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <p *ngIf="user$ | async as user">{{ user?.email }}</p>
+      <h1 class="title">Bodeguero</h1>
+      <div *ngIf="photoURL !== null;else temp">
+        <img src="{{photoURL}}" class="imgUser">
+      </div>
+      <ng-template #temp>
+        <img src="../../../../../assets/img/profile.png" class="imgUser">
+      </ng-template>
+      <br>
+      <p class="title">{{displayName}}</p>
+      <br>
+      <a mat-list-item (click)="showManageProvider()"><mat-icon class="tip">shopping_basket</mat-icon>Administrar Proveedores</a>
+      <br>
+      <a mat-list-item (click)="showManageProduct()"><mat-icon class="tip">work_outline</mat-icon>Administrar Productos</a>
+      <br>
+      <a mat-list-item (click)="showManageMedicine()"><mat-icon class="tip">healing</mat-icon>Administrar Medicamentos</a>
+      <br>
+      <a mat-list-item (click)="showManageProfile()"><mat-icon class="tip">settings</mat-icon>Editar Perfil</a>
+      <br>
+      <a mat-list-item (click)="onSignOut()"><mat-icon class="tip">meeting_room</mat-icon>Cerrar Sesión</a>
       <br>
       <br>
-      <strong>Bodeguero</strong>
-      <br>
-      <a mat-list-item>Inicio</a>
-      <a mat-list-item>Registrar Productos</a>
-      <a mat-list-item (click)="onSignOut()">Cerrar Sesión</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,5 +41,6 @@
       <span>Veterinaria</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

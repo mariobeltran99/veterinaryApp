@@ -1,3 +1,8 @@
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,19 +15,26 @@ import { ModalEditCategoryProductComponent } from '../modal-edit-category-produc
 @Component({
   selector: 'app-view-category-product',
   templateUrl: './view-category-product.component.html',
-  styleUrls: ['./view-category-product.component.css']
+  styleUrls: ['./view-category-product.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class ViewCategoryProductComponent implements OnInit {
-
-  searchForm:FormGroup;
-  categoryProduct:ViewCategoryProduct[] = [];
-  filter:string = '';
+  searchForm: FormGroup;
+  categoryProduct: ViewCategoryProduct[] = [];
+  filter: string = '';
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
-    private categoryProductServices:CategoryProductService,
-    private dialog: MatDialog
-  ) { }
+    private categoryProductServices: CategoryProductService,
+    private dialog: MatDialog,
+    location: Location
+  ) {
+    this.location = location;
+  }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -33,7 +45,7 @@ export class ViewCategoryProductComponent implements OnInit {
     });
     this.loadCategoryProducts();
   }
-  loadCategoryProducts(){
+  loadCategoryProducts() {
     this.categoryProductServices.getCategoryProduct().subscribe((respond) => {
       this.categoryProduct = [];
       respond.docs.forEach((value) => {
@@ -54,7 +66,7 @@ export class ViewCategoryProductComponent implements OnInit {
       if (res) {
         this.messages.success('El registro se ha modificado correctamente');
         this.loadCategoryProducts();
-      }else{
+      } else {
         this.messages.info('Se canceló la modificación del registro');
       }
     });
@@ -79,4 +91,7 @@ export class ViewCategoryProductComponent implements OnInit {
     });
   }
 
+  backView() {
+    this.location.back();
+  }
 }

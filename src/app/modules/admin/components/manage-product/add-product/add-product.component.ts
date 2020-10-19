@@ -1,3 +1,4 @@
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -17,19 +18,25 @@ import { ProvidersService } from '../../../services/providers.service';
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
 })
 export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   category: ViewCategoryProduct[] = [];
   provider: ViewProviders[] = [];
   image: any;
+  location: Location;
   constructor(
     private fb: FormBuilder,
     private messages: NzMessageService,
     private productServices: ProductsService,
     private categoryProductServices: CategoryProductService,
-    private providerServices: ProvidersService
-  ) {}
+    private providerServices: ProvidersService,
+    location: Location
+  ) { this.location = location;}
 
   ngOnInit() {
     this.productForm = this.fb.group({
@@ -145,15 +152,15 @@ export class AddProductComponent implements OnInit {
       if (reg.test(name) == true) {
         this.messages.warning('Existen campos rellenados con espacios');
       } else {
-        const product:Product = {
+        const product: Product = {
           name: name,
           category: category,
           provider: provider,
-          existence:existence,
-          price:price,
+          existence: existence,
+          price: price,
           description: description,
-          qualification:0,
-          sales_quantity:0
+          qualification: 0,
+          sales_quantity: 0,
         };
         this.productServices.preAdd(product, this.image);
         this.messages.success('Se guardaron los datos exitosamente');
@@ -173,5 +180,8 @@ export class AddProductComponent implements OnInit {
     Object.keys(prod.controls).forEach((key) => {
       prod.controls[key].setErrors(null);
     });
+  }
+  backView() {
+   this.location.back();
   }
 }

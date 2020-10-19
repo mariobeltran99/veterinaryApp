@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManageHomeComponent } from './components/manage-home/manage-home.component';
 import { ViewadminComponent } from './components/viewadmin/viewadmin.component';
 
 
@@ -9,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: ViewadminComponent,
     children: [
-      { 
-        path: 'manage-home', 
-        component: ManageHomeComponent 
-      },
       { 
         path: 'manage-users', 
         loadChildren: () => import('./models/manage-user/manage-user.module').then(m => m.ManageUserModule)

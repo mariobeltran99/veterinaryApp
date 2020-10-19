@@ -20,7 +20,6 @@ export class NavbarGrocerComponent implements OnInit {
       map((result) => result.matches),
       shareReplay()
     );
-  public user$: Observable<any> = this.authServices.afAuth.user;
 
   displayName: string = null;
   photoURL: string = null;

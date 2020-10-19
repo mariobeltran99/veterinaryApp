@@ -8,7 +8,13 @@ import { ViewsecretaryComponent } from './components/viewsecretary/viewsecretary
 const routes: Routes = [
   {
     path:'',
-    component: ViewsecretaryComponent
+    component: ViewsecretaryComponent,
+    children:[
+      {
+        path:'manage-messages',
+        loadChildren: () => import('../admin/models/manage-message/manage-message.module').then(m => m.ManageMessageModule)
+      }
+    ]
   }
 ];
 

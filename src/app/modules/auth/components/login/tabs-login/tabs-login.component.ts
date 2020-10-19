@@ -227,7 +227,7 @@ export class TabsLoginComponent implements OnInit {
                       this.router.navigate(['/veterinarian']);
                       break;
                     case 'Secretaria':
-                      this.router.navigate(['/secretary']);
+                      this.router.navigate(['/secretary/manage-messages']);
                       break;
                   }
                 } else if (res) {

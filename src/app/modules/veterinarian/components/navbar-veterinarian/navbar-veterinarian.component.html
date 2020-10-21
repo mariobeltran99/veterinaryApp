@@ -5,15 +5,28 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <p *ngIf="user$ | async as user">{{ user?.email }}</p>
+      <h1 class="title">Veterinario</h1>
+      <div *ngIf="photoURL !== null;else temp">
+        <img src="{{photoURL}}" class="imgUser">
+      </div>
+      <ng-template #temp>
+        <img src="../../../../../assets/img/profile.png" class="imgUser">
+      </ng-template>
+      <br>
+      <p class="title">{{displayName}}</p>
+      <br>
+      <a mat-list-item (click)="showManageProfile()"><mat-icon class="tip">settings</mat-icon>Editar Perfil</a>
+      <br>
+      <a mat-list-item (click)="onSignOut()"><mat-icon class="tip">meeting_room</mat-icon>Cerrar Sesión</a>
       <br>
       <br>
-      <strong>Veterinario</strong>
-      <br>
+<<<<<<< HEAD
       <a mat-list-item (click)="editProfile()">Inicio</a>
       <a mat-list-item  (click)="editProfile()">Editar Perfil</a>
       <a mat-list-item>Registar Receta</a>
       <a mat-list-item (click)="onSignOut()">Cerrar Sesión</a>
+=======
+>>>>>>> f883ba23da1d7a4fabf7493c0d547d5f8a5b5e10
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -29,6 +42,10 @@
       <span>Veterinaria</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+<<<<<<< HEAD
     <router-outlet> </router-outlet>
+=======
+    <router-outlet></router-outlet>
+>>>>>>> f883ba23da1d7a4fabf7493c0d547d5f8a5b5e10
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 
 //---components imports
@@ -43,7 +44,8 @@ registerLocaleData(es);
     AngularFireAuthModule,
     HttpClientModule,
     NzIconModule,
-    NzNotificationModule
+    NzNotificationModule,
+    AngularFireStorageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },

@@ -1,1 +1,22 @@
-<p>manage-providers works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom">
+                <img mat-card-image src="../../../../../../assets/img/create_provider.jpg" class="imgPortada">
+                <br>
+                <button mat-flat-button color="primary" (click)="showCreateProvider()">Agregar Proveedores</button>
+            </mat-card>
+        </div>
+        <div class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom">
+                <img mat-card-image src="../../../../../../assets/img/changes_provider.jpg" class="imgPortada">
+                <br>
+                <button mat-flat-button color="primary" (click)="showViewProviders()">Gestionar Proveedores</button>
+            </mat-card>
+        </div>
+    </div>
+    <br>
+</div>
+<ng-template #contentTemplate>
+    <p class="alert">Dale click al botón para realizar una acción dentro de ese módulo.</p>
+</ng-template>

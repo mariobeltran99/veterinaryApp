@@ -5,7 +5,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 //--components imports
 import { ViewadminComponent } from './components/viewadmin/viewadmin.component';
 import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
-import { ManageHomeComponent } from './components/manage-home/manage-home.component';
 
 //--icons imports
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -27,10 +26,12 @@ import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
+
+
 const components = [
   ViewadminComponent,
-  NavbarAdminComponent,
-  ManageHomeComponent
+  NavbarAdminComponent
 ]
 
 const materialComponents = [

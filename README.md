@@ -1,6 +1,53 @@
-# VeterinaryApp
+# Veterinaria
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+
+## Develops
+
+Mario Josué Beltrán García BG171969
+Jimmy Gerardo Pérez Franco PF161928
+
+## To access new employees
+
+The new employee password is: P@ssw0rd
+
+## Accounts to access the platform
+
+### Login with Google
+
+To access the Google provider you must have a Gmail account
+
+### Administrator Account
+
+email: jose.joestar@outlook.es
+password: P@ssw0rd
+
+### Grocer Account
+
+email: elriceduardo702@outlook.es
+password: P@ssw0rd
+
+### Vet Account
+
+email: yaniralopez470@gmx.com
+password: P@ssw0rd
+
+### Secretary Account
+
+email: mvenegasuwu@tutanota.com
+password: P@ssw0rd
+
+### Client Account 
+
+For the client account enter your personal email, please...
+
+## Deploy on Firebase Hosting
+
+This project running on [here](https://hostingvet-bfdc3.web.app/)
+
+## Dashboard on Trello
+
+Trello board [here](https://trello.com/b/GSq8PJW1/proyecto-veterinaria)
 
 ## Development server
 

@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { ModalSignoutComponent } from '../../../core/components/modal-signout/modal-signout.component';
 
@@ -25,6 +25,7 @@ export class NavbarVeterinarianComponent {
     private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
   onSignOut() {
@@ -34,6 +35,9 @@ export class NavbarVeterinarianComponent {
         this.onLogout();
       }
     });
+  }
+  editProfile(){ //Editar Perfil
+      this.router.navigate(['edit-profile'], { relativeTo: this.route });
   }
   onLogout() {
     try {

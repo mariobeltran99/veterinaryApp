@@ -6,6 +6,7 @@ import { VeterinarianRoutingModule } from './veterinarian-routing.module';
 import { ViewveterinarianComponent } from './components/viewveterinarian/viewveterinarian.component';
 import { NavbarVeterinarianComponent } from './components/navbar-veterinarian/navbar-veterinarian.component';
 
+
 //--icons imports
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -24,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule } from '@angular/material/dialog';
+
 
 const components = [
   ViewveterinarianComponent,

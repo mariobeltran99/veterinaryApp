@@ -43,7 +43,7 @@ For the client account enter your personal email, please...
 
 ## Deploy on Firebase Hosting
 
-This project running on [here]()
+This project running on [here](https://hostingvet-bfdc3.web.app/)
 
 ## Dashboard on Trello
 

@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
 
+## Advance
+
+The application development is 69% with 56 components working and 25 missing in a total of 81 components
+
 ## Develops
 
 Mario Josué Beltrán García BG171969

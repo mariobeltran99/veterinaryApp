@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-sm-12 col-lg-6 col-xl-6 space">
+            <mat-card>
+                <form [formGroup]="searchForm">
+                    <mat-form-field appearance="outline" nz-popover nzPopoverTitle="Ayuda" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="left" class="imp">
+                        <mat-label>Ingrese el código generado de la reservación</mat-label>
+                        <input matInput placeholder="Ej: AM00004" autocomplete="off" formControlName="search">
+                        <mat-icon matSuffix>style</mat-icon>
+                        <mat-error *ngIf="isFieldValid('search')">{{ getErrorMessage("search") }}</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <br>
+                    <button mat-flat-button color="primary" (click)="validateCode()" class="imp" [disabled]="!searchForm.valid"><mat-icon class="ic">check_circle</mat-icon>Validar Reservación</button>
+                </form>    
+            </mat-card>
+        </div>
+    </div>
+</div>
+<ng-template #contentTemplate>
+    <p>Puedes escribir el código de la reservación</p>
+</ng-template>

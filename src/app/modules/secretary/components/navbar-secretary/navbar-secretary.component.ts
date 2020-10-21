@@ -63,5 +63,14 @@ export class NavbarSecretaryComponent implements OnInit {
   showManageMessages() {
     this.router.navigate(['manage-messages'], { relativeTo: this.route });
   }
+  showViewProduct(){
+    this.router.navigate(['view-products'], { relativeTo: this.route });
+  }
+  showViewMedicine(){
+    this.router.navigate(['view-medicines'], { relativeTo: this.route });
+  }
+  showReservation(){
+    this.router.navigate(['verify-reservation'], { relativeTo: this.route });
+  }
   showManageProfile() {}
 }

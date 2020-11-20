@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientRoutingModule } from './client-routing.module';
 
-//--components imports
-import { ViewclientComponent } from './components/viewclient/viewclient.component';
-import { NavbarClientComponent } from './components/navbar-client/navbar-client.component';
+import { ManagePetRoutingModule } from './manage-pet-routing.module';
 
-//--icons imports
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//--import components
+import { ManagePetComponent } from '../../components/manage-pet/manage-pet.component';
 
-//--others imports
+
+//--other imports
 import { ReactiveFormsModule } from '@angular/forms';
 
-//--material imports
+//-- material imports
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,10 +23,8 @@ import { MatCardModule } from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 const components = [
-  ViewclientComponent,
-  NavbarClientComponent
+  ManagePetComponent
 ]
 
 const materialComponents = [
@@ -47,14 +43,13 @@ const materialComponents = [
 
 @NgModule({
   declarations: [
-    ...components,
+    ...components
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule,
-    FontAwesomeModule,
+    ManagePetRoutingModule,
     ReactiveFormsModule,
     ...materialComponents
   ]
 })
-export class ClientModule { }
+export class ManagePetModule { }

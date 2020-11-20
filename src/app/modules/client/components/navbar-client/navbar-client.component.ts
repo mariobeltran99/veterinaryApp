@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalSignoutComponent } from '../../../core/components/modal-signout/modal-signout.component';
 import { Users } from 'src/app/modules/auth/interfaces/user';
@@ -27,6 +27,7 @@ export class NavbarClientComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authServices: AuthService,
     private router: Router,
+    private route:ActivatedRoute,
     private dialog: MatDialog
   ) {}
 
@@ -61,6 +62,9 @@ export class NavbarClientComponent implements OnInit {
     } catch (ex) {
       console.error(ex);
     }
+  }
+  showManagePet(){
+    this.router.navigate(['manage-pets'], { relativeTo: this.route });
   }
   showManageProfile() {}
 }

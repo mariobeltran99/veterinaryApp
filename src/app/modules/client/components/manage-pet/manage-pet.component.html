@@ -1,0 +1,19 @@
+<div class="top-button">
+    <button mat-raised-button color="primary"><mat-icon class="tip">add_circle_outline</mat-icon>Añadir Mascota</button>
+</div>
+<div class="container space">
+    <div *ngIf="pets.length !== 0;else elsenull">
+        <div class="row space">
+            <div class="col-12 col-xl-12 col-lg-12 col-sm-12 col-md-12">
+                <mat-card>Simple card</mat-card>
+            </div>
+        </div>
+    </div>  
+    <ng-template #elsenull>
+        <div class="row space">
+            <div class="col-12 col-xl-12 col-lg-12 col-sm-12 col-md-12">
+                <h1 class="title">No hay mascotas registradas.</h1>
+            </div>
+        </div>
+    </ng-template> 
+</div>

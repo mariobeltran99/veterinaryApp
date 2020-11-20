@@ -6,7 +6,13 @@ import { ViewclientComponent } from './components/viewclient/viewclient.componen
 const routes: Routes = [
   {
     path: '',
-    component: ViewclientComponent
+    component: ViewclientComponent,
+    children:[
+      {
+        path:'manage-pets',
+        loadChildren: () => import('./models/manage-pet/manage-pet.module').then(m => m.ManagePetModule)
+      }
+    ]
   }
 ];
 

@@ -59,7 +59,7 @@ export class AddProductComponent implements OnInit {
       price: new FormControl(null, [
         Validators.required,
         Validators.min(0.05),
-        Validators.max(1000.0),
+        Validators.max(1000.00),
         Validators.pattern('^([0-9]+(.?[0-9]?[0-9]?)?)'),
       ]),
       photo: new FormControl(null, [Validators.required]),
